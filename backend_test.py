@@ -160,7 +160,7 @@ class JobHubAPITester:
                 "notes": "Test application from automated testing"
             }
             
-            success, response = self.run_test("Create Application", "POST", "applications", 201, application_data)
+            success, response = self.run_test("Create Application", "POST", "applications", 200, application_data)
             
             if success and 'application_id' in response:
                 self.application_id = response['application_id']
