@@ -30,6 +30,8 @@ export const useAuthStore = create(
           const response = await axios.post(`${API_URL}/api/auth/login`, {
             email,
             password
+          }, {
+            headers: { 'Content-Type': 'application/json' }
           });
           
           const { access_token, user } = response.data;
@@ -57,6 +59,8 @@ export const useAuthStore = create(
             name,
             email,
             password
+          }, {
+            headers: { 'Content-Type': 'application/json' }
           });
           
           const { access_token, user } = response.data;
