@@ -40,12 +40,8 @@ const ProtectedRoute = ({ children }) => {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  // Check if onboarding is needed (only redirect from home, not from all protected routes)
-  // This allows users to skip onboarding and access the app
-  if (user && !user.onboarding_completed && location.pathname === '/home') {
-    return <Navigate to="/onboarding" replace />;
-  }
-
+  // Don't enforce onboarding - users can skip and access the app
+  // Onboarding is optional but recommended
   return children;
 };
 
