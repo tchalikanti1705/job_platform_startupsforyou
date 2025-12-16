@@ -189,7 +189,7 @@ class JobHubAPITester:
 
     def test_insights_endpoint(self):
         """Test insights endpoint"""
-        return self.run_test("Insights Dashboard", "GET", "insights/dashboard", 200)
+        return self.run_test("Insights Summary", "GET", "insights/summary", 200)
 
     def run_all_tests(self):
         """Run all API tests"""
