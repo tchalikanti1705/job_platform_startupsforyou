@@ -1,34 +1,21 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* App CSS - Minimal overrides, most styles in index.css via Tailwind */
+
+.App {
+  min-height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+/* Smooth transitions for all interactive elements */
+button, a, input, select, textarea {
+  transition: all 0.2s ease;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid hsl(217 91% 60%);
+  outline-offset: 2px;
 }
 
-.App-link {
-    color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+/* Remove default focus outline */
+*:focus:not(:focus-visible) {
+  outline: none;
 }
