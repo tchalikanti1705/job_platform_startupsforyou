@@ -123,13 +123,3 @@
 .stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
 .stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
 .stagger-children > *:nth-child(8) { animation-delay: 0.4s; }
-
-/* Hide external platform badges - target by text content via ::after pseudo-element workaround */
-body > div:last-child:not(.App):not(#root) {
-  display: none !important;
-}
-
-/* Target fixed position badges at bottom-right */
-body > *:not(#root):not(script):not(style) {
-  position: static !important;
-}
