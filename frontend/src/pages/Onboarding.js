@@ -141,6 +141,14 @@ const Onboarding = () => {
     setStep('profile');
   };
 
+  const handleSkipOnboarding = async () => {
+    // For users who want to skip the entire onboarding
+    setIsSubmitting(true);
+    await completeOnboarding();
+    setIsSubmitting(false);
+    navigate('/home');
+  };
+
   const getProgress = () => {
     const stepIndex = STEPS.indexOf(step);
     return ((stepIndex + 1) / STEPS.length) * 100;
@@ -199,14 +207,23 @@ const Onboarding = () => {
                 )}
               </div>
 
-              <div className="mt-6 text-center">
+              <div className="mt-6 flex flex-col gap-2 items-center">
                 <Button
                   variant="ghost"
                   onClick={skipResume}
                   className="text-slate-500"
                   data-testid="skip-resume-btn"
                 >
-                  Skip for now
+                  Skip resume upload
+                </Button>
+                <Button
+                  variant="link"
+                  onClick={handleSkipOnboarding}
+                  className="text-slate-400 text-sm"
+                  disabled={isSubmitting}
+                  data-testid="skip-onboarding-btn"
+                >
+                  {isSubmitting ? 'Loading...' : 'Skip entire onboarding'}
                 </Button>
               </div>
             </CardContent>
