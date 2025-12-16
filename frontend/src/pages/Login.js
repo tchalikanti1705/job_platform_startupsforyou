@@ -21,11 +21,8 @@ const Login = () => {
     
     const result = await login(email, password);
     if (result.success) {
-      if (result.user.onboarding_completed) {
-        navigate('/home');
-      } else {
-        navigate('/onboarding');
-      }
+      // Always redirect to home - ProtectedRoute will handle onboarding redirect if needed
+      navigate('/home');
     }
   };
 
