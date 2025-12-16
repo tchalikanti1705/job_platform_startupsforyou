@@ -37,7 +37,7 @@ const Landing = () => {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <Briefcase className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-slate-900">JobHub</span>
+            <span className="text-xl font-bold text-slate-900">Applynest</span>
           </div>
           
           <div className="flex items-center gap-4">
@@ -143,7 +143,7 @@ const Landing = () => {
             Ready to Start Your Job Search?
           </h2>
           <p className="text-lg text-slate-600 mb-8">
-            Join thousands of job seekers who have found their dream jobs using JobHub.
+            Join thousands of job seekers who have found their dream jobs using Applynest.
           </p>
           <Button
             size="lg"
@@ -163,10 +163,10 @@ const Landing = () => {
             <div className="w-6 h-6 bg-primary rounded flex items-center justify-center">
               <Briefcase className="w-4 h-4 text-white" />
             </div>
-            <span className="font-semibold text-slate-900">JobHub</span>
+            <span className="font-semibold text-slate-900">Applynest</span>
           </div>
           <p className="text-sm text-slate-500">
-            © 2025 JobHub. All rights reserved.
+            © 2025 Applynest. All rights reserved.
           </p>
         </div>
       </footer>
