@@ -144,9 +144,16 @@ const Onboarding = () => {
   const handleSkipOnboarding = async () => {
     // For users who want to skip the entire onboarding
     setIsSubmitting(true);
-    await completeOnboarding();
+    const result = await completeOnboarding();
     setIsSubmitting(false);
-    navigate('/home');
+    
+    if (result.success) {
+      navigate('/home');
+    } else {
+      console.error('Failed to complete onboarding:', result.error);
+      // Still navigate even if backend fails - user can complete later
+      navigate('/jobs');
+    }
   };
 
   const getProgress = () => {
