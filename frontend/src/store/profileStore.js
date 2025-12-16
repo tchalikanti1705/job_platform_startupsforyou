@@ -6,7 +6,11 @@ const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 const getAuthHeaders = () => {
   const { token } = useAuthStore.getState();
-  return token ? { Authorization: `Bearer ${token}` } : {};
+  const headers = { 'Content-Type': 'application/json' };
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+  return headers;
 };
 
 export const useProfileStore = create((set, get) => ({
