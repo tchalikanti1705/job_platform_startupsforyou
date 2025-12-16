@@ -4,18 +4,6 @@
   min-height: 100vh;
 }
 
-/* Hide the "Made with Emergent" badge */
-[class*="emergent"],
-[id*="emergent"],
-a[href*="emergent"],
-div[style*="position: fixed"][style*="bottom"],
-.made-with-emergent,
-#made-with-emergent {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-}
-
 /* Smooth transitions for all interactive elements */
 button, a, input, select, textarea {
   transition: all 0.2s ease;
