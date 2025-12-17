@@ -39,7 +39,7 @@ const Login = () => {
           <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
             <Briefcase className="w-6 h-6 text-white" />
           </div>
-          <span className="text-2xl font-bold text-slate-900">Applynest</span>
+          <span className="text-2xl font-bold text-slate-900">rolesforU</span>
         </div>
 
         <Card className="border-slate-200">
