@@ -24,7 +24,7 @@ db = client[os.environ['DB_NAME']]
 
 # Create the main app
 app = FastAPI(
-    title="rolesforU API",
+    title="RolesForU API",
     description="Job Search & Tracking Platform API",
     version="1.0.0"
 )
@@ -56,7 +56,7 @@ app.include_router(insights_router, prefix="/api")
 
 @app.get("/api")
 async def root():
-    return {"message": "rolesforU API v1.0", "status": "healthy"}
+    return {"message": "RolesForU API v1.0", "status": "healthy"}
 
 
 @app.get("/api/health")
@@ -74,7 +74,7 @@ async def health_check():
 @app.on_event("startup")
 async def startup_event():
     """Initialize on startup"""
-    logger.info("Starting rolesforU API...")
+    logger.info("Starting RolesForU API...")
     
     # Ensure storage directory exists
     storage_path = ROOT_DIR / "storage" / "resumes"
@@ -85,5 +85,5 @@ async def startup_event():
 @app.on_event("shutdown")
 async def shutdown_db_client():
     """Clean up on shutdown"""
-    logger.info("Shutting down rolesforU API...")
+    logger.info("Shutting down RolesForU API...")
     client.close()
