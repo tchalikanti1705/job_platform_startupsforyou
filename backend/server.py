@@ -80,6 +80,14 @@ async def startup_event():
     storage_path = ROOT_DIR / "storage" / "resumes"
     storage_path.mkdir(parents=True, exist_ok=True)
     logger.info(f"Storage path: {storage_path}")
+    
+    # Sync real jobs from public APIs
+    try:
+        from services.job_scraper import sync_jobs_to_db
+        result = await sync_jobs_to_db(db)
+        logger.info(f"Job sync result: {result}")
+    except Exception as e:
+        logger.error(f"Failed to sync jobs on startup: {e}")
 
 
 @app.on_event("shutdown")
