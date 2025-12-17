@@ -186,3 +186,11 @@ async def get_job(
         raise HTTPException(status_code=404, detail="Job not found")
     
     return JobResponse(**serialize_job(job))
+
+
+@router.post("/sync")
+async def sync_jobs(db=Depends(get_db)):
+    """Manually trigger job sync from external APIs"""
+    from services.job_scraper import sync_jobs_to_db
+    result = await sync_jobs_to_db(db)
+    return result
