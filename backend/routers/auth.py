@@ -4,12 +4,11 @@ from typing import Optional
 import bcrypt
 import jwt
 import os
-import httpx
 import logging
 
 from models import (
     UserCreate, UserLogin, UserResponse, TokenResponse,
-    SessionData, generate_user_id
+    generate_user_id
 )
 
 logger = logging.getLogger(__name__)
@@ -20,9 +19,6 @@ router = APIRouter(prefix="/auth", tags=["auth"])
 JWT_SECRET = os.environ.get("JWT_SECRET", "job-platform-secret-key-change-in-production")
 JWT_ALGORITHM = "HS256"
 JWT_EXPIRATION_HOURS = 24 * 7  # 7 days
-
-# Emergent Auth URL
-EMERGENT_AUTH_URL = "https://demobackend.emergentagent.com/auth/v1/env/oauth/session-data"
 
 
 def get_db():
@@ -194,131 +190,6 @@ async def login(credentials: UserLogin, db=Depends(get_db)):
             onboarding_completed=user.get("onboarding_completed", False)
         )
     )
-
-
-@router.post("/session")
-async def exchange_session(request: Request, response: Response, db=Depends(get_db)):
-    """
-    Exchange Emergent OAuth session_id for our session
-    Called after Google OAuth redirect
-    """
-    body = await request.json()
-    session_id = body.get("session_id")
-    
-    if not session_id:
-        raise HTTPException(status_code=400, detail="session_id required")
-    
-    # Exchange session_id with Emergent Auth
-    try:
-        async with httpx.AsyncClient() as client:
-            resp = await client.get(
-                EMERGENT_AUTH_URL,
-                headers={"X-Session-ID": session_id}
-            )
-            
-            if resp.status_code != 200:
-                logger.error(f"Emergent auth failed: {resp.status_code} - {resp.text}")
-                raise HTTPException(status_code=401, detail="Invalid session")
-            
-            auth_data = resp.json()
-    except httpx.RequestError as e:
-        logger.error(f"Emergent auth request failed: {e}")
-        raise HTTPException(status_code=500, detail="Authentication service unavailable")
-    
-    email = auth_data.get("email")
-    name = auth_data.get("name")
-    picture = auth_data.get("picture")
-    emergent_session_token = auth_data.get("session_token")
-    
-    if not email:
-        raise HTTPException(status_code=400, detail="Email not provided by OAuth")
-    
-    now = datetime.now(timezone.utc)
-    
-    # Check if user exists
-    existing_user = await db.users.find_one({"email": email}, {"_id": 0})
-    
-    if existing_user:
-        user_id = existing_user["user_id"]
-        # Update user info
-        await db.users.update_one(
-            {"user_id": user_id},
-            {"$set": {
-                "name": name or existing_user.get("name"),
-                "picture": picture or existing_user.get("picture"),
-                "updated_at": now.isoformat()
-            }}
-        )
-        onboarding_completed = existing_user.get("onboarding_completed", False)
-    else:
-        # Create new user
-        user_id = generate_user_id()
-        user_doc = {
-            "user_id": user_id,
-            "email": email,
-            "name": name or "User",
-            "picture": picture,
-            "password_hash": None,  # OAuth user, no password
-            "created_at": now.isoformat(),
-            "onboarding_completed": False
-        }
-        await db.users.insert_one(user_doc)
-        
-        # Create profile
-        profile_doc = {
-            "user_id": user_id,
-            "email": email,
-            "name": name or "User",
-            "picture": picture,
-            "skills": [],
-            "experience_level": None,
-            "preferred_location": None,
-            "preferred_roles": [],
-            "resume_id": None,
-            "onboarding_completed": False,
-            "created_at": now.isoformat(),
-            "updated_at": None
-        }
-        await db.profiles.insert_one(profile_doc)
-        onboarding_completed = False
-    
-    # Create our session
-    session_token = f"sess_{generate_user_id()}"
-    expires_at = now + timedelta(days=7)
-    
-    session_doc = {
-        "user_id": user_id,
-        "session_token": session_token,
-        "expires_at": expires_at.isoformat(),
-        "created_at": now.isoformat()
-    }
-    await db.user_sessions.insert_one(session_doc)
-    
-    # Set cookie
-    response.set_cookie(
-        key="session_token",
-        value=session_token,
-        httponly=True,
-        secure=True,
-        samesite="none",
-        path="/",
-        max_age=7 * 24 * 60 * 60  # 7 days
-    )
-    
-    # Get user for response
-    user = await db.users.find_one({"user_id": user_id}, {"_id": 0})
-    created_at = user.get("created_at")
-    if isinstance(created_at, str):
-        created_at = datetime.fromisoformat(created_at)
-    
-    return {
-        "user_id": user_id,
-        "email": email,
-        "name": user.get("name"),
-        "picture": user.get("picture"),
-        "onboarding_completed": onboarding_completed,
-        "created_at": created_at.isoformat() if created_at else None
-    }
 
 
 @router.get("/me", response_model=UserResponse)

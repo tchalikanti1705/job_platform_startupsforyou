@@ -80,32 +80,6 @@ export const useAuthStore = create(
         }
       },
       
-      // Exchange OAuth session_id for session
-      exchangeSession: async (sessionId) => {
-        set({ isLoading: true, error: null });
-        try {
-          const response = await axios.post(
-            `${API_URL}/api/auth/session`,
-            { session_id: sessionId },
-            { withCredentials: true }
-          );
-          
-          const user = response.data;
-          
-          set({
-            user,
-            isAuthenticated: true,
-            isLoading: false
-          });
-          
-          return { success: true, user };
-        } catch (error) {
-          const message = error.response?.data?.detail || 'Session exchange failed';
-          set({ error: message, isLoading: false });
-          return { success: false, error: message };
-        }
-      },
-      
       // Check auth status
       checkAuth: async () => {
         set({ isLoading: true });
