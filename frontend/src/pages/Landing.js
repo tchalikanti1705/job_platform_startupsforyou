@@ -89,85 +89,54 @@ const Landing = () => {
       <section className="pt-32 pb-20 px-6 min-h-[90vh] flex items-center">
         <div className="max-w-5xl mx-auto w-full">
           <div className="flex flex-col items-center text-center">
-            {/* Animated Text Display - Now Centered */}
-            <div className="relative w-full max-w-lg mb-12">
-              {/* Animated background circles */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-80 h-80 bg-blue-100 rounded-full animate-pulse opacity-60"></div>
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-64 h-64 bg-blue-200 rounded-full animate-pulse opacity-40" style={{ animationDelay: '0.5s' }}></div>
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-48 h-48 bg-blue-300 rounded-full animate-pulse opacity-30" style={{ animationDelay: '1s' }}></div>
-              </div>
+            
+            {/* Main Heading with Animated Text */}
+            <div className="animate-fade-in mb-8">
+              <h1 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-tight mb-8">
+                Find Your Dream Job,{' '}
+                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Faster</span>
+              </h1>
               
-              {/* Main animated content */}
-              <div className="relative z-10 bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-10 border border-slate-200">
-                <div className="flex flex-col items-center text-center space-y-6">
-                  {/* Animated icon */}
-                  <div 
-                    className={`w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-white shadow-lg transition-all duration-300 ${isAnimating ? 'scale-90 opacity-50 rotate-12' : 'scale-100 opacity-100 rotate-0'}`}
+              {/* Animated Rotating Text */}
+              <div className="flex items-center justify-center gap-4 mb-8">
+                <div 
+                  className={`w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-white shadow-lg transition-all duration-500 ${isAnimating ? 'scale-75 opacity-50 rotate-180' : 'scale-100 opacity-100 rotate-0'}`}
+                >
+                  {rotatingTexts[currentIndex].icon}
+                </div>
+                <div className="h-12 flex items-center overflow-hidden">
+                  <p 
+                    className={`text-2xl lg:text-3xl font-semibold text-slate-700 transition-all duration-500 ${isAnimating ? 'opacity-0 -translate-y-8' : 'opacity-100 translate-y-0'}`}
                   >
-                    {rotatingTexts[currentIndex].icon}
-                  </div>
-                  
-                  {/* Animated text */}
-                  <div className="h-20 flex items-center justify-center">
-                    <p 
-                      className={`text-3xl lg:text-4xl font-bold text-slate-800 transition-all duration-300 ${isAnimating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}
-                    >
-                      {rotatingTexts[currentIndex].text}
-                    </p>
-                  </div>
-                  
-                  {/* Progress dots */}
-                  <div className="flex gap-2">
-                    {rotatingTexts.map((_, index) => (
-                      <div
-                        key={index}
-                        className={`h-2 rounded-full transition-all duration-300 ${
-                          index === currentIndex 
-                            ? 'bg-blue-500 w-8' 
-                            : 'bg-slate-300 w-2'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  
-                  {/* Decorative elements */}
-                  <div className="flex items-center gap-2 text-slate-500 text-sm">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <span>Powered by AI matching</span>
-                  </div>
+                    {rotatingTexts[currentIndex].text}
+                  </p>
                 </div>
               </div>
               
-              {/* Floating badges */}
-              <div className="absolute -top-4 right-8 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg animate-bounce">
-                100+ Jobs
+              {/* Progress dots */}
+              <div className="flex justify-center gap-2 mb-8">
+                {rotatingTexts.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      index === currentIndex 
+                        ? 'bg-blue-500 w-8' 
+                        : 'bg-slate-300 w-2 hover:bg-slate-400'
+                    }`}
+                  />
+                ))}
               </div>
-              <div className="absolute -bottom-4 left-8 bg-purple-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg animate-bounce" style={{ animationDelay: '0.5s' }}>
-                Smart Insights
-              </div>
-              <div className="absolute top-1/2 -right-8 bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg animate-bounce" style={{ animationDelay: '1s' }}>
-                Real-time
-              </div>
-            </div>
-            
-            {/* Main Heading */}
-            <div className="animate-fade-in mb-8">
-              <h1 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-tight mb-6">
-                Find Your Dream Job,{' '}
-                <span className="text-primary bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Faster</span>
-              </h1>
-              <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-                Upload your resume, get matched with the best opportunities, and track your applications all in one place. Built for students and job seekers.
+              
+              <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-4">
+                Upload your resume, get matched with the best opportunities, and track your applications all in one place.
+              </p>
+              <p className="text-lg text-slate-500">
+                Built for students and job seekers.
               </p>
             </div>
             
             {/* CTA Buttons */}
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-4 mt-4">
               <Button
                 size="lg"
                 onClick={() => navigate('/signup')}
@@ -185,6 +154,22 @@ const Landing = () => {
               >
                 I have an account
               </Button>
+            </div>
+            
+            {/* Floating badges */}
+            <div className="flex flex-wrap justify-center gap-4 mt-12">
+              <div className="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                100+ Live Jobs
+              </div>
+              <div className="bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2">
+                <Sparkles className="w-4 h-4" />
+                AI-Powered Matching
+              </div>
+              <div className="bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2">
+                <TrendingUp className="w-4 h-4" />
+                Real-time Insights
+              </div>
             </div>
           </div>
         </div>
