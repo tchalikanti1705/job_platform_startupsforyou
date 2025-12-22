@@ -13,6 +13,9 @@ logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/jobs", tags=["jobs"])
 
+# Valid funding stages
+FUNDING_STAGES = ["Seed", "Series A", "Series B", "Series C", "Series D+", "Unicorn"]
+
 
 def serialize_job(job: dict) -> dict:
     """Convert MongoDB job document to response format"""
@@ -21,7 +24,10 @@ def serialize_job(job: dict) -> dict:
     # Convert datetime strings
     for field in ["date_posted", "application_deadline", "created_at"]:
         if field in result and isinstance(result[field], str):
-            result[field] = datetime.fromisoformat(result[field])
+            try:
+                result[field] = datetime.fromisoformat(result[field].replace("Z", "+00:00"))
+            except:
+                result[field] = datetime.now(timezone.utc)
     
     return result
 
@@ -32,15 +38,16 @@ async def search_jobs(
     skills: Optional[str] = None,  # Comma-separated
     experience_level: Optional[str] = None,
     location: Optional[str] = None,
+    funding_stage: Optional[str] = None,  # Filter by funding stage
     is_startup: Optional[bool] = None,
     remote: Optional[bool] = None,
     page: int = Query(1, ge=1),
     limit: int = Query(20, ge=1, le=100),
     db=Depends(get_db)
 ):
-    """Search jobs with filters"""
-    # Build query
-    mongo_query = {}
+    """Search jobs with filters - USA startup jobs only"""
+    # Build query - always filter for startups
+    mongo_query = {"is_startup": True}
     
     if query:
         mongo_query["$or"] = [
@@ -61,8 +68,13 @@ async def search_jobs(
     if location:
         mongo_query["location"] = {"$regex": location, "$options": "i"}
     
-    if is_startup is not None:
-        mongo_query["is_startup"] = is_startup
+    # Funding stage filter - supports multiple stages
+    if funding_stage:
+        stages = [s.strip() for s in funding_stage.split(",")]
+        if len(stages) == 1:
+            mongo_query["funding_stage"] = {"$regex": stages[0], "$options": "i"}
+        else:
+            mongo_query["funding_stage"] = {"$in": stages}
     
     if remote is not None:
         mongo_query["remote"] = remote
@@ -192,7 +204,37 @@ async def get_job(
 
 @router.post("/sync")
 async def sync_jobs(db=Depends(get_db)):
-    """Manually trigger job sync from external APIs"""
-    from services.job_scraper import sync_jobs_to_db
-    result = await sync_jobs_to_db(db)
+    """Sync real USA startup jobs from multiple sources"""
+    from services.usa_jobs import sync_usa_startup_jobs
+    result = await sync_usa_startup_jobs(db)
     return result
+
+
+@router.get("/stats")
+async def get_job_stats(db=Depends(get_db)):
+    """Get job statistics by funding stage and location"""
+    # Aggregate by funding stage
+    funding_pipeline = [
+        {"$match": {"is_startup": True}},
+        {"$group": {"_id": "$funding_stage", "count": {"$sum": 1}}},
+        {"$sort": {"count": -1}}
+    ]
+    funding_stats = await db.jobs.aggregate(funding_pipeline).to_list(length=20)
+    
+    # Aggregate by location (extract city)
+    location_pipeline = [
+        {"$match": {"is_startup": True}},
+        {"$group": {"_id": "$location", "count": {"$sum": 1}}},
+        {"$sort": {"count": -1}},
+        {"$limit": 10}
+    ]
+    location_stats = await db.jobs.aggregate(location_pipeline).to_list(length=10)
+    
+    # Total count
+    total = await db.jobs.count_documents({"is_startup": True})
+    
+    return {
+        "total_jobs": total,
+        "by_funding_stage": {s["_id"]: s["count"] for s in funding_stats if s["_id"]},
+        "by_location": {s["_id"]: s["count"] for s in location_stats if s["_id"]}
+    }

@@ -134,7 +134,7 @@ const Onboarding = () => {
     
     // Redirect after animation
     setTimeout(() => {
-      navigate('/home');
+      navigate('/jobs');
     }, 1500);
   };
 
@@ -148,7 +148,7 @@ const Onboarding = () => {
     setIsSubmitting(false);
     
     if (result.success) {
-      navigate('/home');
+      navigate('/jobs');
     } else {
       navigate('/jobs');
     }

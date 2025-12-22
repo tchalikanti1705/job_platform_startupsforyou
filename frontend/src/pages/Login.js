@@ -21,8 +21,8 @@ const Login = () => {
     
     const result = await login(email, password);
     if (result.success) {
-      // Always redirect to home - ProtectedRoute will handle onboarding redirect if needed
-      navigate('/home');
+      // Redirect to jobs page after login
+      navigate('/jobs');
     }
   };
 

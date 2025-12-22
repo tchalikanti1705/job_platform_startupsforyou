@@ -8,6 +8,17 @@ import {
 } from 'lucide-react';
 import { format } from 'date-fns';
 
+// Funding stage styling
+const FUNDING_STYLES = {
+  'Seed': { emoji: '🌱', bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200' },
+  'Series A': { emoji: '📈', bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200' },
+  'Series B': { emoji: '🚀', bg: 'bg-purple-50', text: 'text-purple-700', border: 'border-purple-200' },
+  'Series C': { emoji: '💰', bg: 'bg-orange-50', text: 'text-orange-700', border: 'border-orange-200' },
+  'Series D': { emoji: '💎', bg: 'bg-cyan-50', text: 'text-cyan-700', border: 'border-cyan-200' },
+  'Series D+': { emoji: '💎', bg: 'bg-cyan-50', text: 'text-cyan-700', border: 'border-cyan-200' },
+  'Unicorn': { emoji: '🦄', bg: 'bg-pink-50', text: 'text-pink-700', border: 'border-pink-200' },
+};
+
 const JobCard = ({ 
   job, 
   showMatchScore = false,
@@ -29,6 +40,8 @@ const JobCard = ({
     if (score >= 40) return 'text-yellow-600 bg-yellow-50';
     return 'text-slate-600 bg-slate-50';
   };
+
+  const fundingStyle = FUNDING_STYLES[job.funding_stage] || FUNDING_STYLES['Series A'];
 
   return (
     <Card 
@@ -54,14 +67,18 @@ const JobCard = ({
                 <h3 className="font-semibold text-slate-900 text-lg group-hover:text-primary transition-colors">
                   {job.title}
                 </h3>
-                <p className="text-slate-600 flex items-center gap-1">
-                  {job.company}
-                  {job.is_startup && (
-                    <Badge variant="outline" className="ml-2 text-xs border-blue-200 text-blue-600">
-                      Startup
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-slate-600">{job.company}</span>
+                  {job.funding_stage && (
+                    <Badge 
+                      variant="outline" 
+                      className={`text-xs ${fundingStyle.bg} ${fundingStyle.text} ${fundingStyle.border}`}
+                    >
+                      <span className="mr-1">{fundingStyle.emoji}</span>
+                      {job.funding_stage}
                     </Badge>
                   )}
-                </p>
+                </div>
               </div>
 
               {/* Match Score */}

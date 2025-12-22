@@ -8,13 +8,12 @@ import {
 } from './ui/dropdown-menu';
 import { 
   Briefcase, Home, Search, Building2, BarChart3, 
-  ClipboardList, User, LogOut, Settings 
+  ClipboardList, User, LogOut, Settings, Rocket 
 } from 'lucide-react';
 import { Toaster } from './ui/sonner';
 
 const NAV_ITEMS = [
-  { path: '/home', label: 'Home', icon: Home },
-  { path: '/jobs', label: 'Jobs', icon: Search },
+  { path: '/jobs', label: 'Home', icon: Rocket },
   { path: '/startups', label: 'Startups', icon: Building2 },
   { path: '/tracker', label: 'Tracker', icon: ClipboardList },
   { path: '/insights', label: 'Insights', icon: BarChart3 }
@@ -41,9 +40,9 @@ const Layout = ({ children }) => {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/50">
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
           {/* Logo */}
-          <Link to="/home" className="flex items-center gap-2" data-testid="logo">
+          <Link to="/jobs" className="flex items-center gap-2" data-testid="logo">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <Briefcase className="w-5 h-5 text-white" />
+              <Rocket className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold text-slate-900">RolesForU</span>
           </Link>

@@ -10,12 +10,31 @@ import { Badge } from '../components/ui/badge';
 import { Checkbox } from '../components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { Skeleton } from '../components/ui/skeleton';
-import { Search, X, SlidersHorizontal, Briefcase } from 'lucide-react';
+import { Search, X, SlidersHorizontal, Briefcase, Rocket, TrendingUp, Building2, Crown } from 'lucide-react';
 import { toast } from 'sonner';
 
 const COMMON_SKILLS = [
   'JavaScript', 'Python', 'React', 'Node.js', 'TypeScript', 
   'SQL', 'AWS', 'Docker', 'Machine Learning', 'Git'
+];
+
+const FUNDING_STAGES = [
+  { value: 'Seed', label: 'Seed', icon: '🌱', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
+  { value: 'Series A', label: 'Series A', icon: '📈', color: 'bg-blue-100 text-blue-700 border-blue-200' },
+  { value: 'Series B', label: 'Series B', icon: '🚀', color: 'bg-purple-100 text-purple-700 border-purple-200' },
+  { value: 'Series C', label: 'Series C', icon: '💰', color: 'bg-orange-100 text-orange-700 border-orange-200' },
+  { value: 'Unicorn', label: 'Unicorn', icon: '🦄', color: 'bg-pink-100 text-pink-700 border-pink-200' },
+];
+
+const USA_CITIES = [
+  { value: '', label: 'All Locations' },
+  { value: 'San Francisco', label: '🌉 San Francisco' },
+  { value: 'New York', label: '🗽 New York' },
+  { value: 'Seattle', label: '🌲 Seattle' },
+  { value: 'Austin', label: '🤠 Austin' },
+  { value: 'Boston', label: '🎓 Boston' },
+  { value: 'Los Angeles', label: '🌴 Los Angeles' },
+  { value: 'Remote', label: '🏠 Remote' },
 ];
 
 const Jobs = () => {
@@ -26,6 +45,7 @@ const Jobs = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [appliedJobs, setAppliedJobs] = useState(new Set());
+  const [selectedFunding, setSelectedFunding] = useState([]);
 
   useEffect(() => {
     searchJobs();
@@ -50,6 +70,14 @@ const Jobs = () => {
     setFilters({ skills: newSkills });
   };
 
+  const handleFundingToggle = (stage) => {
+    const newStages = selectedFunding.includes(stage)
+      ? selectedFunding.filter(s => s !== stage)
+      : [...selectedFunding, stage];
+    setSelectedFunding(newStages);
+    setFilters({ funding_stage: newStages.join(',') });
+  };
+
   const handleApply = async (jobId) => {
     const result = await createApplication(jobId);
     if (result.success) {
@@ -66,12 +94,13 @@ const Jobs = () => {
 
   const clearFilters = () => {
     setSearchQuery('');
+    setSelectedFunding([]);
     setFilters({
       query: '',
       skills: [],
       experience_level: '',
       location: '',
-      is_startup: null,
+      funding_stage: '',
       remote: null
     });
     searchJobs();
@@ -87,7 +116,7 @@ const Jobs = () => {
     filters.skills.length > 0 || 
     filters.experience_level || 
     filters.location ||
-    filters.is_startup !== null ||
+    selectedFunding.length > 0 ||
     filters.remote !== null;
 
   return (
@@ -95,8 +124,29 @@ const Jobs = () => {
       <div className="max-w-7xl mx-auto" data-testid="jobs-page">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">Browse Jobs</h1>
-          <p className="text-slate-600">Find your next opportunity</p>
+          <h1 className="text-3xl font-bold text-slate-900 mb-2">
+            🚀 Startup Jobs
+          </h1>
+          <p className="text-slate-600">Find your next opportunity at top USA startups</p>
+        </div>
+
+        {/* Funding Stage Quick Filters */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          {FUNDING_STAGES.map((stage) => (
+            <button
+              key={stage.value}
+              onClick={() => handleFundingToggle(stage.value)}
+              className={`px-4 py-2 rounded-full border text-sm font-medium transition-all ${
+                selectedFunding.includes(stage.value)
+                  ? stage.color + ' ring-2 ring-offset-1'
+                  : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
+              }`}
+              data-testid={`funding-filter-${stage.value.toLowerCase().replace(' ', '-')}`}
+            >
+              <span className="mr-1.5">{stage.icon}</span>
+              {stage.label}
+            </button>
+          ))}
         </div>
 
         {/* Search Bar */}
@@ -175,29 +225,28 @@ const Jobs = () => {
                 </Select>
               </div>
 
-              {/* Location */}
+              {/* Location - USA Cities */}
               <div className="mb-6">
-                <Label className="text-sm font-medium text-slate-700 mb-3 block">Location</Label>
-                <Input
+                <Label className="text-sm font-medium text-slate-700 mb-3 block">City</Label>
+                <Select
                   value={filters.location}
-                  onChange={(e) => setFilters({ location: e.target.value })}
-                  placeholder="City or Remote"
-                  data-testid="location-filter"
-                />
+                  onValueChange={(value) => setFilters({ location: value })}
+                >
+                  <SelectTrigger data-testid="location-filter">
+                    <SelectValue placeholder="All Locations" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {USA_CITIES.map((city) => (
+                      <SelectItem key={city.value} value={city.value || "all"}>
+                        {city.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               {/* Toggles */}
               <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <Checkbox
-                    id="startup"
-                    checked={filters.is_startup === true}
-                    onCheckedChange={(checked) => setFilters({ is_startup: checked ? true : null })}
-                    data-testid="startup-filter"
-                  />
-                  <Label htmlFor="startup" className="text-sm cursor-pointer">Startups only</Label>
-                </div>
-                
                 <div className="flex items-center gap-3">
                   <Checkbox
                     id="remote"

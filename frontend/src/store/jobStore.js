@@ -15,7 +15,7 @@ export const useJobStore = create((set, get) => ({
     skills: [],
     experience_level: '',
     location: '',
-    is_startup: null,
+    funding_stage: '',
     remote: null
   },
   sortBy: 'best_match',
@@ -40,8 +40,8 @@ export const useJobStore = create((set, get) => ({
       if (filters.query) params.append('query', filters.query);
       if (filters.skills.length > 0) params.append('skills', filters.skills.join(','));
       if (filters.experience_level) params.append('experience_level', filters.experience_level);
-      if (filters.location) params.append('location', filters.location);
-      if (filters.is_startup !== null) params.append('is_startup', filters.is_startup);
+      if (filters.location && filters.location !== 'all') params.append('location', filters.location);
+      if (filters.funding_stage) params.append('funding_stage', filters.funding_stage);
       if (filters.remote !== null) params.append('remote', filters.remote);
       params.append('page', page);
       params.append('limit', limit);
@@ -53,6 +53,17 @@ export const useJobStore = create((set, get) => ({
     } catch (error) {
       set({ error: error.message, isLoading: false });
       return [];
+    }
+  },
+  
+  // Sync jobs from external sources
+  syncJobs: async () => {
+    try {
+      const response = await axios.post(`${API_URL}/api/jobs/sync`);
+      return response.data;
+    } catch (error) {
+      console.error('Failed to sync jobs:', error);
+      return { error: error.message };
     }
   },
   

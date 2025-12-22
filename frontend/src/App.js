@@ -7,7 +7,6 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Onboarding from './pages/Onboarding';
 import Profile from './pages/Profile';
-import Home from './pages/Home';
 import Jobs from './pages/Jobs';
 import JobDetail from './pages/JobDetail';
 import Tracker from './pages/Tracker';
@@ -43,11 +42,13 @@ function AppRouter() {
           </ProtectedRoute>
         }
       />
+      {/* Redirect /home to /jobs */}
+      <Route path="/home" element={<Navigate to="/jobs" replace />} />
       <Route
-        path="/home"
+        path="/jobs"
         element={
           <ProtectedRoute>
-            <Home />
+            <Jobs />
           </ProtectedRoute>
         }
       />
