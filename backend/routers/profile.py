@@ -7,7 +7,7 @@ import logging
 
 from models import (
     UserProfile, ProfileUpdate, ResumeResponse, ParsedResume,
-    generate_resume_id
+    generate_resume_id, EducationItem, ExperienceItem, ProjectItem, CertificationItem
 )
 from routers.auth import get_current_user, get_db
 from services.resume_parser import parse_resume
@@ -22,7 +22,7 @@ os.makedirs(STORAGE_PATH, exist_ok=True)
 
 
 async def process_resume(resume_id: str, filepath: str, user_id: str, db):
-    """Background task to process resume"""
+    """Background task to process resume and update profile with all extracted data"""
     try:
         # Update status to parsing
         await db.resumes.update_one(
@@ -54,23 +54,54 @@ async def process_resume(resume_id: str, filepath: str, user_id: str, db):
             }}
         )
         
-        # Update user profile with parsed data
+        # Update user profile with ALL parsed data from resume
         profile_update = {
             "resume_id": resume_id,
             "updated_at": datetime.now(timezone.utc).isoformat()
         }
         
-        if parsed_data.get("skills"):
-            profile_update["skills"] = parsed_data["skills"]
+        # Personal Info
         if parsed_data.get("name"):
             profile_update["name"] = parsed_data["name"]
+        if parsed_data.get("phone"):
+            profile_update["phone"] = parsed_data["phone"]
+        if parsed_data.get("location"):
+            profile_update["location"] = parsed_data["location"]
+        if parsed_data.get("linkedin"):
+            profile_update["linkedin"] = parsed_data["linkedin"]
+        if parsed_data.get("github"):
+            profile_update["github"] = parsed_data["github"]
+        if parsed_data.get("portfolio"):
+            profile_update["portfolio"] = parsed_data["portfolio"]
+        
+        # Professional Summary
+        if parsed_data.get("summary"):
+            profile_update["summary"] = parsed_data["summary"]
+        
+        # Core Sections
+        if parsed_data.get("skills"):
+            profile_update["skills"] = parsed_data["skills"]
+        if parsed_data.get("education"):
+            profile_update["education"] = parsed_data["education"]
+        if parsed_data.get("experience"):
+            profile_update["experience"] = parsed_data["experience"]
+        if parsed_data.get("projects"):
+            profile_update["projects"] = parsed_data["projects"]
+        if parsed_data.get("certifications"):
+            profile_update["certifications"] = parsed_data["certifications"]
+        
+        # Additional
+        if parsed_data.get("languages"):
+            profile_update["languages"] = parsed_data["languages"]
+        if parsed_data.get("total_years_experience"):
+            profile_update["total_years_experience"] = parsed_data["total_years_experience"]
         
         await db.profiles.update_one(
             {"user_id": user_id},
             {"$set": profile_update}
         )
         
-        logger.info(f"Resume {resume_id} processed successfully")
+        logger.info(f"Resume {resume_id} processed successfully with all sections extracted")
         
     except Exception as e:
         logger.error(f"Error processing resume {resume_id}: {e}")
@@ -185,7 +216,7 @@ async def get_profile(
     user: dict = Depends(get_current_user),
     db=Depends(get_db)
 ):
-    """Get current user's profile"""
+    """Get current user's profile with all resume data"""
     profile = await db.profiles.find_one(
         {"user_id": user["user_id"]},
         {"_id": 0}
@@ -202,15 +233,51 @@ async def get_profile(
     if isinstance(updated_at, str):
         updated_at = datetime.fromisoformat(updated_at)
     
+    # Parse education items
+    education = []
+    for edu in profile.get("education", []):
+        if isinstance(edu, dict):
+            education.append(EducationItem(**edu))
+    
+    # Parse experience items
+    experience = []
+    for exp in profile.get("experience", []):
+        if isinstance(exp, dict):
+            experience.append(ExperienceItem(**exp))
+    
+    # Parse project items
+    projects = []
+    for proj in profile.get("projects", []):
+        if isinstance(proj, dict):
+            projects.append(ProjectItem(**proj))
+    
+    # Parse certification items
+    certifications = []
+    for cert in profile.get("certifications", []):
+        if isinstance(cert, dict):
+            certifications.append(CertificationItem(**cert))
+    
     return UserProfile(
         user_id=profile["user_id"],
         email=profile["email"],
         name=profile["name"],
         picture=profile.get("picture"),
+        phone=profile.get("phone"),
+        location=profile.get("location"),
+        linkedin=profile.get("linkedin"),
+        github=profile.get("github"),
+        portfolio=profile.get("portfolio"),
+        summary=profile.get("summary"),
         skills=profile.get("skills", []),
+        education=education,
+        experience=experience,
+        projects=projects,
+        certifications=certifications,
+        languages=profile.get("languages", []),
         experience_level=profile.get("experience_level"),
         preferred_location=profile.get("preferred_location"),
         preferred_roles=profile.get("preferred_roles", []),
+        total_years_experience=profile.get("total_years_experience"),
         resume_id=profile.get("resume_id"),
         onboarding_completed=profile.get("onboarding_completed", False),
         created_at=created_at,
@@ -224,17 +291,44 @@ async def update_profile(
     user: dict = Depends(get_current_user),
     db=Depends(get_db)
 ):
-    """Update user profile"""
+    """Update user profile with all fields"""
     user_id = user["user_id"]
     now = datetime.now(timezone.utc)
     
-    # Build update document
+    # Build update document with all possible fields
     update_doc = {"updated_at": now.isoformat()}
     
+    # Personal Info
     if update_data.name is not None:
         update_doc["name"] = update_data.name
+    if update_data.phone is not None:
+        update_doc["phone"] = update_data.phone
+    if update_data.location is not None:
+        update_doc["location"] = update_data.location
+    if update_data.linkedin is not None:
+        update_doc["linkedin"] = update_data.linkedin
+    if update_data.github is not None:
+        update_doc["github"] = update_data.github
+    if update_data.portfolio is not None:
+        update_doc["portfolio"] = update_data.portfolio
+    if update_data.summary is not None:
+        update_doc["summary"] = update_data.summary
+    
+    # Core Sections
     if update_data.skills is not None:
         update_doc["skills"] = update_data.skills
+    if update_data.education is not None:
+        update_doc["education"] = [edu.model_dump() for edu in update_data.education]
+    if update_data.experience is not None:
+        update_doc["experience"] = [exp.model_dump() for exp in update_data.experience]
+    if update_data.projects is not None:
+        update_doc["projects"] = [proj.model_dump() for proj in update_data.projects]
+    if update_data.certifications is not None:
+        update_doc["certifications"] = [cert.model_dump() for cert in update_data.certifications]
+    if update_data.languages is not None:
+        update_doc["languages"] = update_data.languages
+    
+    # Preferences
     if update_data.experience_level is not None:
         update_doc["experience_level"] = update_data.experience_level
     if update_data.preferred_location is not None:
@@ -264,15 +358,33 @@ async def update_profile(
     if isinstance(created_at, str):
         created_at = datetime.fromisoformat(created_at)
     
+    # Parse items
+    education = [EducationItem(**edu) for edu in profile.get("education", []) if isinstance(edu, dict)]
+    experience = [ExperienceItem(**exp) for exp in profile.get("experience", []) if isinstance(exp, dict)]
+    projects = [ProjectItem(**proj) for proj in profile.get("projects", []) if isinstance(proj, dict)]
+    certifications = [CertificationItem(**cert) for cert in profile.get("certifications", []) if isinstance(cert, dict)]
+    
     return UserProfile(
         user_id=profile["user_id"],
         email=profile["email"],
         name=profile["name"],
         picture=profile.get("picture"),
+        phone=profile.get("phone"),
+        location=profile.get("location"),
+        linkedin=profile.get("linkedin"),
+        github=profile.get("github"),
+        portfolio=profile.get("portfolio"),
+        summary=profile.get("summary"),
         skills=profile.get("skills", []),
+        education=education,
+        experience=experience,
+        projects=projects,
+        certifications=certifications,
+        languages=profile.get("languages", []),
         experience_level=profile.get("experience_level"),
         preferred_location=profile.get("preferred_location"),
         preferred_roles=profile.get("preferred_roles", []),
+        total_years_experience=profile.get("total_years_experience"),
         resume_id=profile.get("resume_id"),
         onboarding_completed=profile.get("onboarding_completed", False),
         created_at=created_at,
