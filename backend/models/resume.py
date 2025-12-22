@@ -12,24 +12,68 @@ class EducationItem(BaseModel):
     institution: str
     degree: Optional[str] = None
     field: Optional[str] = None
-    year: Optional[str] = None
+    start_date: Optional[str] = None
+    end_date: Optional[str] = None
+    year: Optional[str] = None  # For backward compatibility
+    gpa: Optional[str] = None
+    achievements: List[str] = []
 
 
 class ExperienceItem(BaseModel):
     company: str
     title: Optional[str] = None
-    duration: Optional[str] = None
+    location: Optional[str] = None
+    start_date: Optional[str] = None
+    end_date: Optional[str] = None
+    duration: Optional[str] = None  # For backward compatibility
+    is_current: bool = False
     description: Optional[str] = None
+    achievements: List[str] = []  # Bullet points from resume
+
+
+class ProjectItem(BaseModel):
+    name: str
+    description: Optional[str] = None
+    technologies: List[str] = []
+    url: Optional[str] = None
+    achievements: List[str] = []
+
+
+class CertificationItem(BaseModel):
+    name: str
+    issuer: Optional[str] = None
+    date: Optional[str] = None
+    credential_id: Optional[str] = None
+    url: Optional[str] = None
 
 
 class ParsedResume(BaseModel):
+    # Personal Info
     name: Optional[str] = None
     email: Optional[str] = None
     phone: Optional[str] = None
+    location: Optional[str] = None
+    linkedin: Optional[str] = None
+    github: Optional[str] = None
+    portfolio: Optional[str] = None
+    
+    # Professional Summary
+    summary: Optional[str] = None
+    objective: Optional[str] = None
+    
+    # Core Sections
     skills: List[str] = []
     education: List[EducationItem] = []
     experience: List[ExperienceItem] = []
-    summary: Optional[str] = None
+    projects: List[ProjectItem] = []
+    certifications: List[CertificationItem] = []
+    
+    # Additional
+    languages: List[str] = []
+    interests: List[str] = []
+    
+    # Metadata
+    total_years_experience: Optional[float] = None
 
 
 class Resume(BaseModel):

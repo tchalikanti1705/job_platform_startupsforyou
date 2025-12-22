@@ -13,5 +13,5 @@ from .application import (
 )
 from .resume import (
     Resume, ResumeResponse, ParsedResume, EducationItem, 
-    ExperienceItem, generate_resume_id
+    ExperienceItem, ProjectItem, CertificationItem, generate_resume_id
 )

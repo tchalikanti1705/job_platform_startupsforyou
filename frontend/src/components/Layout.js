@@ -89,9 +89,9 @@ const Layout = ({ children }) => {
                 <p className="text-sm text-slate-500 truncate">{user?.email}</p>
               </div>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => navigate('/onboarding')} className="cursor-pointer">
+              <DropdownMenuItem onClick={() => navigate('/profile')} className="cursor-pointer">
                 <User className="w-4 h-4 mr-2" />
-                Edit Profile
+                View Profile
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-red-600" data-testid="logout-btn">
