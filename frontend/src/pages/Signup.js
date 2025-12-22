@@ -35,8 +35,8 @@ const Signup = () => {
     
     const result = await signup(name, email, password);
     if (result.success) {
-      // New users go to onboarding
-      navigate('/onboarding');
+      // Show coming soon page after signup
+      navigate('/coming-soon');
     }
   };
 

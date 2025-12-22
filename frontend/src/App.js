@@ -1,20 +1,23 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import '@/App.css';
 
-// Pages
+// Pages - Active
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Onboarding from './pages/Onboarding';
-import Profile from './pages/Profile';
-import Jobs from './pages/Jobs';
-import JobDetail from './pages/JobDetail';
-import Tracker from './pages/Tracker';
-import Startups from './pages/Startups';
-import Insights from './pages/Insights';
+import ComingSoon from './pages/ComingSoon';
+
+// Pages - Coming Soon (Commented Out)
+// import Onboarding from './pages/Onboarding';
+// import Profile from './pages/Profile';
+// import Jobs from './pages/Jobs';
+// import JobDetail from './pages/JobDetail';
+// import Tracker from './pages/Tracker';
+// import Startups from './pages/Startups';
+// import Insights from './pages/Insights';
 
 // Components
-import ProtectedRoute from './components/ProtectedRoute';
+// import ProtectedRoute from './components/ProtectedRoute';
 
 // Router component that handles routing
 function AppRouter() {
@@ -24,8 +27,12 @@ function AppRouter() {
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/coming-soon" element={<ComingSoon />} />
       
-      {/* Protected Routes */}
+      {/* All other routes redirect to coming soon for now */}
+      <Route path="*" element={<Navigate to="/coming-soon" replace />} />
+      
+      {/* Protected Routes - Coming Soon
       <Route
         path="/onboarding"
         element={
@@ -42,16 +49,7 @@ function AppRouter() {
           </ProtectedRoute>
         }
       />
-      {/* Redirect /home to /jobs */}
       <Route path="/home" element={<Navigate to="/jobs" replace />} />
-      <Route
-        path="/jobs"
-        element={
-          <ProtectedRoute>
-            <Jobs />
-          </ProtectedRoute>
-        }
-      />
       <Route
         path="/jobs"
         element={
@@ -92,9 +90,7 @@ function AppRouter() {
           </ProtectedRoute>
         }
       />
-      
-      {/* Fallback */}
-      <Route path="*" element={<Navigate to="/" replace />} />
+      */}
     </Routes>
   );
 }

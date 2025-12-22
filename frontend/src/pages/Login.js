@@ -21,8 +21,8 @@ const Login = () => {
     
     const result = await login(email, password);
     if (result.success) {
-      // Redirect to jobs page after login
-      navigate('/jobs');
+      // Show coming soon page after login
+      navigate('/coming-soon');
     }
   };
 
