@@ -134,7 +134,8 @@ async def get_startup_list(
             "_id": "$company",
             "job_count": {"$sum": 1},
             "lat": {"$first": "$geo.lat"},
-            "lng": {"$first": "$geo.lng"}
+            "lng": {"$first": "$geo.lng"},
+            "funding_stage": {"$first": "$funding_stage"}
         }},
         {"$sort": {"job_count": -1}}
     ]
@@ -149,7 +150,8 @@ async def get_startup_list(
             company=startup["_id"],
             lat=startup.get("lat") or 37.7749,  # Default to SF
             lng=startup.get("lng") or -122.4194,
-            job_count=startup["job_count"]
+            job_count=startup["job_count"],
+            funding_stage=startup.get("funding_stage")
         ))
     
     return result

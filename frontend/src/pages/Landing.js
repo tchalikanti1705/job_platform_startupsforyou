@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
-import { Briefcase, Target, BarChart3, MapPin, ArrowRight, Search, Sparkles, TrendingUp, Zap } from 'lucide-react';
+import { Briefcase, Target, BarChart3, Rocket, ArrowRight, Users, Sparkles, TrendingUp, Zap, Building2, Trophy } from 'lucide-react';
 
 const Landing = () => {
   const navigate = useNavigate();
   
   // Rotating text animation
   const rotatingTexts = [
-    { text: 'Finding Your Dream Job', icon: <Search className="w-8 h-8" /> },
-    { text: 'Matching Your Skills', icon: <Target className="w-8 h-8" /> },
-    { text: 'Tracking Applications', icon: <TrendingUp className="w-8 h-8" /> },
-    { text: 'Discovering Startups', icon: <Sparkles className="w-8 h-8" /> },
-    { text: 'Analyzing Insights', icon: <BarChart3 className="w-8 h-8" /> },
-    { text: 'Accelerating Success', icon: <Zap className="w-8 h-8" /> },
+    { text: 'Connecting with Founders', icon: <Users className="w-8 h-8" /> },
+    { text: 'Discovering Seed Startups', icon: <Sparkles className="w-8 h-8" /> },
+    { text: 'Joining Series A-C Rockets', icon: <Rocket className="w-8 h-8" /> },
+    { text: 'Landing Unicorn Roles', icon: <Trophy className="w-8 h-8" /> },
+    { text: 'Building the Future', icon: <Building2 className="w-8 h-8" /> },
+    { text: 'Accelerating Your Career', icon: <Zap className="w-8 h-8" /> },
   ];
   
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -33,24 +33,24 @@ const Landing = () => {
 
   const features = [
     {
-      icon: <Target className="w-6 h-6" />,
-      title: 'Smart Matching',
-      description: 'Get personalized job recommendations based on your skills and preferences.'
+      icon: <Users className="w-6 h-6" />,
+      title: 'Direct Founder Access',
+      description: 'Connect directly with startup founders and hiring managers. No recruiters, no middlemen.'
     },
     {
-      icon: <Briefcase className="w-6 h-6" />,
-      title: 'Application Tracker',
-      description: 'Keep track of all your applications in one place with status updates.'
+      icon: <Rocket className="w-6 h-6" />,
+      title: 'Seed to Unicorn',
+      description: 'Discover opportunities from early-stage startups to billion-dollar unicorns.'
     },
     {
       icon: <BarChart3 className="w-6 h-6" />,
-      title: 'Insights Dashboard',
-      description: 'Visualize your job search progress with detailed analytics.'
+      title: 'Startup Insights',
+      description: 'Get funding data, team size, and growth metrics for every startup.'
     },
     {
-      icon: <MapPin className="w-6 h-6" />,
-      title: 'Startup Focus',
-      description: 'Discover exciting opportunities at innovative startups.'
+      icon: <Trophy className="w-6 h-6" />,
+      title: 'Equity & Impact',
+      description: 'Find roles with real equity and the chance to shape company culture.'
     }
   ];
 
@@ -93,8 +93,8 @@ const Landing = () => {
             {/* Main Heading with Animated Text */}
             <div className="animate-fade-in mb-8">
               <h1 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-tight mb-8">
-                Find Your Dream Job,{' '}
-                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Faster</span>
+                Join the Startup{' '}
+                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">Revolution</span>
               </h1>
               
               {/* Animated Rotating Text */}
@@ -128,10 +128,10 @@ const Landing = () => {
               </div>
               
               <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-4">
-                Upload your resume, get matched with the best opportunities, and track your applications all in one place.
+                Connect directly with founders, discover roles at the hottest startups from Seed to Unicorn, and build the future.
               </p>
               <p className="text-lg text-slate-500">
-                Built for students and job seekers.
+                The #1 platform for startup jobs.
               </p>
             </div>
             
@@ -160,15 +160,15 @@ const Landing = () => {
             <div className="flex flex-wrap justify-center gap-4 mt-12">
               <div className="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                100+ Live Jobs
+                500+ Startup Jobs
               </div>
               <div className="bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2">
-                <Sparkles className="w-4 h-4" />
-                AI-Powered Matching
+                <Users className="w-4 h-4" />
+                Direct Founder Access
               </div>
-              <div className="bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2">
-                <TrendingUp className="w-4 h-4" />
-                Real-time Insights
+              <div className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2">
+                <Rocket className="w-4 h-4" />
+                Seed → Series → Unicorn
               </div>
             </div>
           </div>
@@ -180,10 +180,10 @@ const Landing = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
-              Everything You Need
+              Built for the Startup Ecosystem
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Powerful tools to streamline your job search and help you land your next opportunity.
+              Everything you need to find your perfect role at a startup that matches your ambition.
             </p>
           </div>
           
@@ -212,10 +212,10 @@ const Landing = () => {
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">
-            Ready to Start Your Job Search?
+            Ready to Join a Rocket Ship? 🚀
           </h2>
           <p className="text-lg text-slate-600 mb-8">
-            Join thousands of job seekers who have found their dream jobs using RolesForU.
+            Join thousands of ambitious people building the future at world-changing startups.
           </p>
           <Button
             size="lg"
@@ -223,7 +223,7 @@ const Landing = () => {
             className="rounded-full px-10"
             data-testid="cta-signup-btn"
           >
-            Create Free Account
+            Start Your Startup Journey
           </Button>
         </div>
       </section>

@@ -25,6 +25,7 @@ class Job(BaseModel):
     skills_required: List[str] = []
     experience_level: str  # entry, mid, senior
     is_startup: bool = False
+    funding_stage: Optional[str] = None  # Seed, Series A, Series B, Series C, Series D+, Unicorn
     salary_range: Optional[str] = None
     job_type: str = "full-time"  # full-time, part-time, contract, internship
     remote: bool = False
@@ -45,6 +46,7 @@ class JobResponse(BaseModel):
     skills_required: List[str] = []
     experience_level: str
     is_startup: bool = False
+    funding_stage: Optional[str] = None
     salary_range: Optional[str] = None
     job_type: str = "full-time"
     remote: bool = False
@@ -77,3 +79,4 @@ class StartupMapItem(BaseModel):
     lat: float
     lng: float
     job_count: int
+    funding_stage: Optional[str] = None
