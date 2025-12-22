@@ -44,7 +44,7 @@ const Layout = ({ children }) => {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <Rocket className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-slate-900">RolesForU</span>
+            <span className="text-xl font-bold text-slate-900">StartupsForYou</span>
           </Link>
 
           {/* Navigation */}

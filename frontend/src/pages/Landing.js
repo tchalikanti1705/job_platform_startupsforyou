@@ -63,7 +63,7 @@ const Landing = () => {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <Briefcase className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-slate-900">RolesForU</span>
+            <span className="text-xl font-bold text-slate-900">StartupsForYou</span>
           </div>
           
           <div className="flex items-center gap-4">
@@ -235,10 +235,10 @@ const Landing = () => {
             <div className="w-6 h-6 bg-primary rounded flex items-center justify-center">
               <Briefcase className="w-4 h-4 text-white" />
             </div>
-            <span className="font-semibold text-slate-900">RolesForU</span>
+            <span className="font-semibold text-slate-900">StartupsForYou</span>
           </div>
           <p className="text-sm text-slate-500">
-            © 2025 RolesForU. All rights reserved.
+            © 2025 StartupsForYou. All rights reserved.
           </p>
         </div>
       </footer>

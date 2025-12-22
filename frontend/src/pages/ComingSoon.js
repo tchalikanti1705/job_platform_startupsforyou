@@ -12,7 +12,7 @@ const ComingSoon = () => {
           <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
             <Rocket className="w-7 h-7 text-white" />
           </div>
-          <span className="text-2xl font-bold text-slate-900">RolesForU</span>
+          <span className="text-2xl font-bold text-slate-900">StartupsForYou</span>
         </div>
 
         <Card className="border-slate-200 shadow-lg">
@@ -73,8 +73,8 @@ const ComingSoon = () => {
 
         <p className="mt-6 text-sm text-slate-500">
           Questions? Contact us at{' '}
-          <a href="mailto:hello@rolesforu.com" className="text-primary hover:underline">
-            hello@rolesforu.com
+          <a href="mailto:hello@startupsforyou.com" className="text-primary hover:underline">
+            hello@startupsforyou.com
           </a>
         </p>
       </div>

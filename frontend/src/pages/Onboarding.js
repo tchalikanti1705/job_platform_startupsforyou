@@ -168,7 +168,7 @@ const Onboarding = () => {
             <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
               <Briefcase className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl font-bold text-slate-900">RolesForU</span>
+            <span className="text-2xl font-bold text-slate-900">StartupsForYou</span>
           </div>
           <h1 className="text-2xl font-bold text-slate-900">Let's set up your profile</h1>
           <p className="text-slate-600 mt-2">This helps us find the best startup jobs for you</p>
