@@ -43,20 +43,20 @@ const Signup = () => {
   const displayError = validationError || error;
 
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-background flex items-center justify-center p-6">
       <div className="w-full max-w-md">
         {/* Logo */}
-        <div className="flex items-center justify-center gap-2 mb-8">
+        <div className="flex items-center justify-center gap-3 mb-8">
           <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
             <Briefcase className="w-6 h-6 text-white" />
           </div>
-          <span className="text-2xl font-bold text-slate-900">StartupsForYou</span>
+          <span className="text-2xl font-bold text-foreground font-accent">StartupsForYou</span>
         </div>
 
-        <Card className="border-slate-200">
+        <Card className="border-border bg-card shadow-sm">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl">Create an account</CardTitle>
-            <CardDescription>Start your job search journey today</CardDescription>
+            <CardTitle className="text-2xl text-foreground">Create an account</CardTitle>
+            <CardDescription className="text-muted-foreground">Start your startup journey today</CardDescription>
           </CardHeader>
           <CardContent>
             {displayError && (
@@ -68,7 +68,7 @@ const Signup = () => {
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Full Name</Label>
+                <Label htmlFor="name" className="text-foreground">Full Name</Label>
                 <Input
                   id="name"
                   type="text"
@@ -76,12 +76,13 @@ const Signup = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
+                  className="border-border focus:ring-accent"
                   data-testid="signup-name-input"
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="text-foreground">Email</Label>
                 <Input
                   id="email"
                   type="email"
@@ -89,12 +90,13 @@ const Signup = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  className="border-border focus:ring-accent"
                   data-testid="signup-email-input"
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-foreground">Password</Label>
                 <Input
                   id="password"
                   type="password"
@@ -102,12 +104,13 @@ const Signup = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  className="border-border focus:ring-accent"
                   data-testid="signup-password-input"
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword">Confirm Password</Label>
+                <Label htmlFor="confirmPassword" className="text-foreground">Confirm Password</Label>
                 <Input
                   id="confirmPassword"
                   type="password"
@@ -115,13 +118,14 @@ const Signup = () => {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
+                  className="border-border focus:ring-accent"
                   data-testid="signup-confirm-password-input"
                 />
               </div>
 
               <Button
                 type="submit"
-                className="w-full rounded-full"
+                className="w-full rounded-full bg-primary hover:bg-primary/90"
                 disabled={isLoading}
                 data-testid="signup-submit-btn"
               >
@@ -136,17 +140,17 @@ const Signup = () => {
               </Button>
             </form>
 
-            <p className="text-center text-sm text-slate-600 mt-6">
+            <p className="text-center text-sm text-muted-foreground mt-6">
               Already have an account?{' '}
-              <Link to="/login" className="text-primary hover:underline font-medium">
+              <Link to="/login" className="text-accent hover:underline font-medium">
                 Sign in
               </Link>
             </p>
           </CardContent>
         </Card>
 
-        <p className="text-center text-xs text-slate-500 mt-6">
-          <Link to="/" className="hover:text-slate-700">
+        <p className="text-center text-xs text-muted-foreground mt-6">
+          <Link to="/" className="hover:text-foreground transition-colors">
             ← Back to home
           </Link>
         </p>

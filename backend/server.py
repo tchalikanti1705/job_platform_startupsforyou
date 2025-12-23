@@ -24,8 +24,8 @@ db = client[os.environ['DB_NAME']]
 
 # Create the main app
 app = FastAPI(
-    title="RolesForU API",
-    description="Job Search & Tracking Platform API",
+    title="StartupsForYou API",
+    description="Startup Job Platform API",
     version="1.0.0"
 )
 
@@ -39,31 +39,20 @@ app.add_middleware(
 )
 
 # Import and include routers
-from routers import (
-    auth_router,
-    profile_router,
-    jobs_router,
-    applications_router,
-    insights_router
-)
+from routers import auth_router
 
 app.include_router(auth_router, prefix="/api")
-app.include_router(profile_router, prefix="/api")
-app.include_router(jobs_router, prefix="/api")
-app.include_router(applications_router, prefix="/api")
-app.include_router(insights_router, prefix="/api")
 
 
 @app.get("/api")
 async def root():
-    return {"message": "RolesForU API v1.0", "status": "healthy"}
+    return {"message": "StartupsForYou API v1.0", "status": "healthy"}
 
 
 @app.get("/api/health")
 async def health_check():
     """Health check endpoint"""
     try:
-        # Check MongoDB connection
         await db.command("ping")
         return {"status": "healthy", "database": "connected"}
     except Exception as e:
@@ -74,24 +63,11 @@ async def health_check():
 @app.on_event("startup")
 async def startup_event():
     """Initialize on startup"""
-    logger.info("Starting RolesForU API...")
-    
-    # Ensure storage directory exists
-    storage_path = ROOT_DIR / "storage" / "resumes"
-    storage_path.mkdir(parents=True, exist_ok=True)
-    logger.info(f"Storage path: {storage_path}")
-    
-    # Sync real jobs from public APIs
-    try:
-        from services.job_scraper import sync_jobs_to_db
-        result = await sync_jobs_to_db(db)
-        logger.info(f"Job sync result: {result}")
-    except Exception as e:
-        logger.error(f"Failed to sync jobs on startup: {e}")
+    logger.info("Starting StartupsForYou API...")
 
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
     """Clean up on shutdown"""
-    logger.info("Shutting down RolesForU API...")
+    logger.info("Shutting down StartupsForYou API...")
     client.close()

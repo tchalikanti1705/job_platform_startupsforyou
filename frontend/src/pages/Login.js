@@ -27,20 +27,20 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-background flex items-center justify-center p-6">
       <div className="w-full max-w-md">
         {/* Logo */}
-        <div className="flex items-center justify-center gap-2 mb-8">
+        <div className="flex items-center justify-center gap-3 mb-8">
           <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
             <Briefcase className="w-6 h-6 text-white" />
           </div>
-          <span className="text-2xl font-bold text-slate-900">StartupsForYou</span>
+          <span className="text-2xl font-bold text-foreground font-accent">StartupsForYou</span>
         </div>
 
-        <Card className="border-slate-200">
+        <Card className="border-border bg-card shadow-sm">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl">Welcome back</CardTitle>
-            <CardDescription>Sign in to your account to continue</CardDescription>
+            <CardTitle className="text-2xl text-foreground">Welcome back</CardTitle>
+            <CardDescription className="text-muted-foreground">Sign in to your account to continue</CardDescription>
           </CardHeader>
           <CardContent>
             {error && (
@@ -52,7 +52,7 @@ const Login = () => {
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="text-foreground">Email</Label>
                 <Input
                   id="email"
                   type="email"
@@ -60,12 +60,13 @@ const Login = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  className="border-border focus:ring-accent"
                   data-testid="login-email-input"
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-foreground">Password</Label>
                 <Input
                   id="password"
                   type="password"
@@ -73,13 +74,14 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  className="border-border focus:ring-accent"
                   data-testid="login-password-input"
                 />
               </div>
 
               <Button
                 type="submit"
-                className="w-full rounded-full"
+                className="w-full rounded-full bg-primary hover:bg-primary/90"
                 disabled={isLoading}
                 data-testid="login-submit-btn"
               >
@@ -94,17 +96,17 @@ const Login = () => {
               </Button>
             </form>
 
-            <p className="text-center text-sm text-slate-600 mt-6">
+            <p className="text-center text-sm text-muted-foreground mt-6">
               Don't have an account?{' '}
-              <Link to="/signup" className="text-primary hover:underline font-medium">
+              <Link to="/signup" className="text-accent hover:underline font-medium">
                 Sign up
               </Link>
             </p>
           </CardContent>
         </Card>
 
-        <p className="text-center text-xs text-slate-500 mt-6">
-          <Link to="/" className="hover:text-slate-700">
+        <p className="text-center text-xs text-muted-foreground mt-6">
+          <Link to="/" className="hover:text-foreground transition-colors">
             ← Back to home
           </Link>
         </p>

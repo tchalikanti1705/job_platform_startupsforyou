@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,29 +6,30 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 215 28% 17%;
-    --card: 0 0% 100%;
-    --card-foreground: 215 28% 17%;
+    /* Navy + Gold Professional Editorial Theme */
+    --background: 220 20% 97%;           /* Light grayish-blue background */
+    --foreground: 222 47% 11%;           /* Dark navy text */
+    --card: 0 0% 100%;                   /* White cards */
+    --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 215 28% 17%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 215 28% 17%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215 16% 47%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 215 28% 17%;
-    --destructive: 0 84.2% 60.2%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 222 47% 15%;              /* Deep navy blue */
+    --primary-foreground: 0 0% 100%;     /* White text on navy */
+    --secondary: 220 20% 94%;            /* Light gray-blue */
+    --secondary-foreground: 222 47% 11%;
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 15% 45%;     /* Slate - muted gray */
+    --accent: 38 92% 50%;                /* Warm gold */
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 217 91% 60%;
-    --radius: 0.75rem;
-    --chart-1: 217 91% 60%;
-    --chart-2: 160 84% 39%;
-    --chart-3: 38 92% 50%;
+    --border: 220 20% 88%;
+    --input: 220 20% 88%;
+    --ring: 38 92% 50%;                  /* Gold ring */
+    --radius: 0.5rem;
+    --chart-1: 222 47% 15%;
+    --chart-2: 38 92% 50%;
+    --chart-3: 160 84% 39%;
     --chart-4: 0 84% 60%;
     --chart-5: 271 91% 65%;
   }
@@ -41,16 +42,16 @@
   
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', sans-serif;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Playfair Display', serif;
     @apply tracking-tight;
   }
   
   .font-accent {
-    font-family: 'Newsreader', serif;
+    font-family: 'Playfair Display', serif;
   }
 }
 
@@ -60,22 +61,56 @@
   }
 }
 
-/* Custom scrollbar */
+/* Card slide-in animations */
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideInFromLeft 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-slide-in:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.animate-slide-in:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.animate-slide-in:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.animate-slide-in:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+/* Custom scrollbar - Navy theme */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-slate-100;
+  background: hsl(220, 20%, 94%);
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 rounded-full;
+  background: hsl(222, 47%, 15%);
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-slate-400;
+  background: hsl(38, 92%, 50%);
 }
 
 /* Animations */
