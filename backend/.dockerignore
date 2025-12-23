@@ -1,0 +1,26 @@
+# Python cache
+__pycache__
+*.pyc
+*.pyo
+*.egg-info
+.eggs
+
+# Virtual environments
+.venv
+venv
+env
+
+# IDE
+.vscode
+.idea
+
+# Logs
+*.log
+
+# Local storage (will be mounted as volume)
+storage/resumes/*
+!storage/resumes/.gitkeep
+
+# Tests
+tests/
+test_reports/

@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:7.0
+    container_name: rolesforu-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=rolesforu
+    networks:
+      - rolesforu-network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  # Backend - FastAPI
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: rolesforu-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - backend_resumes:/app/storage/resumes
+    environment:
+      - MONGO_URL=mongodb://mongodb:27017
+      - DB_NAME=rolesforu
+      - JWT_SECRET=your-super-secret-jwt-key-change-in-production
+      - CORS_ORIGINS=http://localhost:3000,http://frontend:3000
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - rolesforu-network
+
+  # Frontend - React
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: rolesforu-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - REACT_APP_BACKEND_URL=http://localhost:8000
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    depends_on:
+      - backend
+    networks:
+      - rolesforu-network
+    stdin_open: true
+    tty: true
+
+volumes:
+  mongodb_data:
+    driver: local
+  backend_resumes:
+    driver: local
+
+networks:
+  rolesforu-network:
+    driver: bridge
