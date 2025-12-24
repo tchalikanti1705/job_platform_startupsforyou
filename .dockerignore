@@ -1,0 +1,43 @@
+# Git
+.git
+.gitignore
+
+# Node modules (frontend will install fresh)
+frontend/node_modules
+
+# Python cache
+**/__pycache__
+**/*.pyc
+**/*.pyo
+*.egg-info
+.eggs
+
+# Virtual environments
+.venv
+venv
+env
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test files
+*.md
+test_reports/
+tests/
+
+# Build artifacts
+frontend/build
+*.log
+
+# Environment files (copy manually or use docker secrets)
+.env
+.env.local
+.env.*.local
+backend/.env
