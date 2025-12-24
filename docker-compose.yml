@@ -38,6 +38,11 @@ services:
       - DB_NAME=rolesforu
       - JWT_SECRET=your-super-secret-jwt-key-change-in-production
       - CORS_ORIGINS=http://localhost:3000,http://frontend:3000
+      # Google OAuth
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID:-}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET:-}
+      - GOOGLE_REDIRECT_URI=http://localhost:8000/api/auth/google/callback
+      - FRONTEND_URL=http://localhost:3000
     depends_on:
       mongodb:
         condition: service_healthy

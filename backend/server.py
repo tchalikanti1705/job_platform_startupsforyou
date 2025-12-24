@@ -39,9 +39,10 @@ app.add_middleware(
 )
 
 # Import and include routers
-from routers import auth_router
+from routers import auth_router, oauth_router
 
 app.include_router(auth_router, prefix="/api")
+app.include_router(oauth_router, prefix="/api")
 
 
 @app.get("/api")
