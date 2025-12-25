@@ -45,19 +45,19 @@ const ComingSoon = () => {
                 <div className="w-6 h-6 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0 border border-accent/30">
                   <span className="text-accent text-xs font-bold">1</span>
                 </div>
-                <span>🦄 Exclusive Startup Jobs (Seed to Unicorn)</span>
+                <span>🚀 Explore the Startup Jobs</span>
               </div>
               <div className="flex items-center gap-3 text-left text-sm text-muted-foreground">
                 <div className="w-6 h-6 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0 border border-accent/30">
                   <span className="text-accent text-xs font-bold">2</span>
                 </div>
-                <span>📄 AI-Powered Resume Matching</span>
+                <span>💬 Connect with the Founders and Message Them</span>
               </div>
               <div className="flex items-center gap-3 text-left text-sm text-muted-foreground">
                 <div className="w-6 h-6 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0 border border-accent/30">
                   <span className="text-accent text-xs font-bold">3</span>
                 </div>
-                <span>🎯 Personalized Job Recommendations</span>
+                <span>📊 Tracker and Insights</span>
               </div>
             </div>
 
@@ -73,8 +73,8 @@ const ComingSoon = () => {
 
         <p className="mt-6 text-sm text-muted-foreground">
           Questions? Contact us at{' '}
-          <a href="mailto:hello@startupsforyou.com" className="text-accent hover:underline">
-            hello@startupsforyou.com
+          <a href="mailto:support@startupsforyou.com" className="text-accent hover:underline">
+            support@startupsforyou.com
           </a>
         </p>
       </div>
