@@ -195,51 +195,6 @@ The traditional job market fails both **startups** and **job seekers** in critic
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### Project Structure
-
-```
-startupsforyu/
-│
-├── 📁 backend/                    # FastAPI Backend
-│   ├── server.py                  # Main application entry
-│   ├── requirements.txt           # Python dependencies
-│   ├── Dockerfile                 # Backend container config
-│   ├── 📁 models/                 # Pydantic data models
-│   │   └── user.py               # User, Profile, Token models
-│   ├── 📁 routers/               # API route handlers
-│   │   └── auth.py               # Authentication endpoints
-│   ├── 📁 services/              # Business logic layer
-│   ├── 📁 storage/               # File storage
-│   │   └── resumes/              # Uploaded resumes
-│   └── 📁 tech_spec/             # API documentation
-│
-├── 📁 frontend/                   # React Frontend
-│   ├── package.json              # Node dependencies
-│   ├── Dockerfile                # Frontend container config
-│   ├── tailwind.config.js        # Tailwind configuration
-│   ├── 📁 public/                # Static assets
-│   ├── 📁 src/
-│   │   ├── App.js                # Root component & routing
-│   │   ├── 📁 components/ui/     # shadcn/ui components (40+)
-│   │   ├── 📁 pages/             # Page components
-│   │   │   ├── Landing.js        # Marketing landing page
-│   │   │   ├── Login.js          # User login
-│   │   │   ├── Signup.js         # User registration
-│   │   │   └── ComingSoon.js     # Post-registration page
-│   │   ├── 📁 store/             # Zustand state stores
-│   │   │   └── authStore.js      # Authentication state
-│   │   ├── 📁 hooks/             # Custom React hooks
-│   │   └── 📁 lib/               # Utilities
-│   └── 📁 tech_spec/             # Frontend documentation
-│
-├── 📁 tests/                      # Test suites
-├── 📁 docs/                       # Additional documentation
-├── docker-compose.yml             # Container orchestration
-├── TECH_SPEC.md                   # Technical specification
-├── requirements.md                # Feature requirements
-└── README.md                      # This file
-```
-
 ### Data Flow
 
 ```
