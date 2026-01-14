@@ -6,25 +6,25 @@
   <img src="https://img.shields.io/badge/TailwindCSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="TailwindCSS"/>
 </p>
 
-<h1 align="center">🚀 StartupsForYou</h1>
+<h1 align="center">StartupsForYou</h1>
 
 <p align="center">
   <strong>AI-Powered Job Platform Connecting Ambitious Talent with Exceptional Startups</strong>
 </p>
 
 <p align="center">
-  <a href="#-the-problem">Problem</a> •
-  <a href="#-our-solution">Solution</a> •
-  <a href="#-features">Features</a> •
-  <a href="#%EF%B8%8F-tech-stack">Tech Stack</a> •
-  <a href="#-architecture">Architecture</a> •
-  <a href="#-getting-started">Getting Started</a> •
-  <a href="#-roadmap">Roadmap</a>
+  <a href="#the-problem">Problem</a> •
+  <a href="#our-solution">Solution</a> •
+  <a href="#features">Features</a> •
+  <a href="#tech-stack">Tech Stack</a> •
+  <a href="#architecture">Architecture</a> •
+  <a href="#getting-started">Getting Started</a> •
+  <a href="#roadmap">Roadmap</a>
 </p>
 
 ---
 
-## 🎯 The Problem
+## The Problem
 
 ### The Startup Hiring Gap
 
@@ -42,7 +42,7 @@ The traditional job market fails both **startups** and **job seekers** in critic
 
 ---
 
-## 💡 Our Solution
+## Our Solution
 
 **StartupsForYou** is a specialized job platform designed exclusively for the startup ecosystem. We leverage **AI-powered matching** to connect the right talent with the right startups based on skills, culture fit, and career aspirations.
 
@@ -66,26 +66,26 @@ The traditional job market fails both **startups** and **job seekers** in critic
 
 ---
 
-## ✨ Features
+## Features
 
-### 🔐 Authentication & Onboarding
+### Authentication & Onboarding
 - **Secure JWT Authentication** with email/password
 - **Google OAuth Integration** (Phase 2)
 - **Smart Onboarding Flow** with resume parsing and profile building
 - **Skip Option** for users who want to explore first
 
-### 📄 Intelligent Resume Parsing
+### Intelligent Resume Parsing
 - Upload PDF/DOCX resumes
 - **Rule-based extraction** of skills, experience, education
 - **AI-ready architecture** for GPT/Gemini integration
 - User can edit and enhance extracted profile
 
-### 🎯 Personalized Job Matching
+### Personalized Job Matching
 - **Best Match Algorithm** weighing skills, experience, and preferences
 - **Newest First** sorting for time-sensitive opportunities
 - Filter by: Skills, Experience Level, Location, Remote, Startup Stage
 
-### 🏢 Startup Discovery
+### Startup Discovery
 - Browse curated startup listings with:
   - Funding stage (Seed → Series A → Unicorn)
   - Team size and growth metrics
@@ -93,12 +93,12 @@ The traditional job market fails both **startups** and **job seekers** in critic
   - Company culture highlights
 - **Map View** with Mapbox integration (optional)
 
-### 📊 Application Tracker
+### Application Tracker
 - **Kanban Board** with drag-and-drop (Phase 2)
 - Status tracking: Applied → Interview → Offer/Rejected
 - Deadline reminders and notifications
 
-### 📈 Career Insights Dashboard
+### Career Insights Dashboard
 - Application activity trends
 - Conversion funnel analytics
 - KPI summary (applications, interviews, offers)
@@ -106,7 +106,7 @@ The traditional job market fails both **startups** and **job seekers** in critic
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 
@@ -145,7 +145,7 @@ The traditional job market fails both **startups** and **job seekers** in critic
 
 ---
 
-## 🏗 Architecture
+## Architecture
 
 ### System Overview
 
@@ -213,7 +213,7 @@ The traditional job market fails both **startups** and **job seekers** in critic
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -277,53 +277,7 @@ npm start  # or yarn start
 
 ---
 
-## 📋 API Endpoints
-
-### Authentication
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/api/auth/signup` | Register new user |
-| `POST` | `/api/auth/login` | User login |
-| `GET` | `/api/auth/me` | Get current user |
-| `POST` | `/api/auth/logout` | User logout |
-
-### Profile
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/api/profile/resume/upload` | Upload resume |
-| `GET` | `/api/profile/me` | Get user profile |
-| `PUT` | `/api/profile/me` | Update profile |
-
-### Jobs
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/api/jobs/search` | Search with filters |
-| `GET` | `/api/jobs/recommended` | Personalized recommendations |
-| `GET` | `/api/jobs/{id}` | Job details |
-| `GET` | `/api/jobs/startups/list` | List startups |
-
-### Applications
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/api/applications` | Apply to job |
-| `GET` | `/api/applications` | List applications |
-| `PATCH` | `/api/applications/{id}/status` | Update status |
-
-### Insights
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/api/insights/summary` | KPI summary |
-| `GET` | `/api/insights/timeseries` | Activity trends |
-| `GET` | `/api/insights/funnel` | Conversion funnel |
-
----
-
-## 🗺 Roadmap
+## Roadmap
 
 ### Phase 1: MVP ✅ (Current)
 - [x] User authentication (JWT)
@@ -359,7 +313,7 @@ npm start  # or yarn start
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
 
@@ -371,13 +325,13 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Teja Chalikanti**
 - GitHub: [@tchalikanti1705](https://github.com/tchalikanti1705)
