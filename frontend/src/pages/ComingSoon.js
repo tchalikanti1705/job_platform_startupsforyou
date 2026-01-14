@@ -71,12 +71,7 @@ const ComingSoon = () => {
           </CardContent>
         </Card>
 
-        <p className="mt-6 text-sm text-muted-foreground">
-          Questions? Contact us at{' '}
-          <a href="mailto:support@startupsforyou.com" className="text-accent hover:underline">
-            support@startupsforyou.com
-          </a>
-        </p>
+
       </div>
     </div>
   );
