@@ -1,108 +1,148 @@
 <p align="center">
   <img src="https://img.shields.io/badge/React-19.0.0-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React"/>
-  <img src="https://img.shields.io/badge/FastAPI-0.110.1-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI"/>
+  <img src="https://img.shields.io/badge/FastAPI-0.110+-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI"/>
   <img src="https://img.shields.io/badge/MongoDB-7.0-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB"/>
   <img src="https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
   <img src="https://img.shields.io/badge/TailwindCSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="TailwindCSS"/>
+  <img src="https://img.shields.io/badge/OpenAI-LLM-412991?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI"/>
 </p>
 
-<h1 align="center">StartupsForYou</h1>
+<h1 align="center">🚀 StartupsForYou</h1>
 
 <p align="center">
-  <strong>AI-Powered Job Platform Connecting Ambitious Talent with Exceptional Startups</strong>
+  <strong>AI-Powered Two-Sided Talent Marketplace Connecting Founders with Engineers</strong>
+</p>
+
+<p align="center">
+  <em>The bridge between ambitious engineers and visionary founders</em>
 </p>
 
 <p align="center">
   <a href="#the-problem">Problem</a> •
-  <a href="#our-solution">Solution</a> •
-  <a href="#features">Features</a> •
+  <a href="#the-solution">Solution</a> •
+  <a href="#for-engineers">For Engineers</a> •
+  <a href="#for-founders">For Founders</a> •
   <a href="#tech-stack">Tech Stack</a> •
   <a href="#architecture">Architecture</a> •
-  <a href="#getting-started">Getting Started</a> •
-  <a href="#roadmap">Roadmap</a>
+  <a href="#getting-started">Getting Started</a>
 </p>
 
 ---
 
 ## The Problem
 
-### The Startup Hiring Gap
+### The Two-Sided Hiring Gap
 
-The traditional job market fails both **startups** and **job seekers** in critical ways:
+| For Engineers | For Founders |
+|---------------|--------------|
+| ❌ Hard to discover quality startup opportunities | ❌ Struggle to find candidates interested in startup culture |
+| ❌ Generic job boards don't understand startup skills | ❌ Waste time with candidates who don't fit startup mindset |
+| ❌ No direct connection to founders | ❌ Miss great candidates from non-traditional backgrounds |
+| ❌ Lack of startup context (funding, stage, equity) | ❌ Can't showcase what makes their startup unique |
 
-| Pain Point | For Job Seekers | For Startups |
-|------------|-----------------|--------------|
-| **Discovery** | Hard to find quality startup opportunities buried under corporate listings | Struggle to reach candidates interested in startup culture |
-| **Matching** | Generic job boards don't understand startup-specific skills (equity, fast-paced, wear-many-hats) | Waste time filtering candidates who don't fit startup mindset |
-| **Access** | No direct connection to founders; blocked by recruiters | Miss great candidates who don't fit traditional resume patterns |
-| **Tracking** | Managing applications across 20+ platforms is chaotic | No insight into candidate pipeline quality |
-| **Context** | Lack of startup metrics (funding stage, team size, growth) to make informed decisions | Can't showcase what makes their startup unique |
-
-**The Result:** Talented professionals miss life-changing opportunities at promising startups, while startups struggle to build their founding teams.
+**Result:** Talented engineers miss life-changing opportunities while founders struggle to build their founding teams.
 
 ---
 
-## Our Solution
+## The Solution
 
-**StartupsForYou** is a specialized job platform designed exclusively for the startup ecosystem. We leverage **AI-powered matching** to connect the right talent with the right startups based on skills, culture fit, and career aspirations.
-
-### What Makes Us Different
+**StartupsForYou** is a **two-sided talent marketplace** that directly connects startup founders with engineering talent using **AI-powered matching**.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                                                                              │
-│    Traditional Job Boards          vs          StartupsForYou               │
-│    ─────────────────────                      ──────────────────            │
-│                                                                              │
-│    ❌ Generic listings                        ✅ Startup-curated only        │
-│    ❌ Keyword matching                        ✅ AI semantic matching         │
-│    ❌ No company context                      ✅ Funding, stage, metrics      │
-│    ❌ Recruiter gatekeeping                   ✅ Direct founder access        │
-│    ❌ Fragmented tracking                     ✅ Unified application tracker  │
-│    ❌ One-size-fits-all                       ✅ Personalized recommendations │
+│       ENGINEERS                      AI                      FOUNDERS        │
+│    ┌───────────┐              ┌─────────────┐             ┌───────────┐      │
+│    │           │              │             │             │           │      │
+│    │  Profile  │─────────────►│   MATCHING  │◄────────────│   Roles   │      │
+│    │  Skills   │              │   ENGINE    │             │   Needs   │      │
+│    │  Goals    │              │             │             │  Culture  │      │
+│    │           │              └──────┬──────┘             │           │      │
+│    └───────────┘                     │                    └───────────┘      │
+│                                      │                                       │
+│                             DIRECT CONNECTION                                │
+│                                      │                                       │
+│                               ┌──────▼──────┐                                │
+│                               │   Messages  │                                │
+│                               │ Interviews  │                                │
+│                               │   Offers    │                                │
+│                               └─────────────┘                                │
 │                                                                              │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Features
+## For Engineers
 
-### Authentication & Onboarding
-- **Secure JWT Authentication** with email/password
-- **Google OAuth Integration** (Phase 2)
-- **Smart Onboarding Flow** with resume parsing and profile building
-- **Skip Option** for users who want to explore first
+### 🎯 Find Your Perfect Startup
 
-### Intelligent Resume Parsing
-- Upload PDF/DOCX resumes
-- **Rule-based extraction** of skills, experience, education
-- **AI-ready architecture** for GPT/Gemini integration
-- User can edit and enhance extracted profile
+| Feature | Description |
+|---------|-------------|
+| **AI-Powered Matching** | Get role recommendations based on skills, experience, and preferences |
+| **Direct Founder Access** | Skip recruiters - connect directly with startup founders |
+| **Application Tracker** | Track all your applications in one unified dashboard |
+| **Resume Parsing** | AI extracts skills and experience from your resume |
+| **Transparent Info** | See funding stage, team size, equity ranges upfront |
 
-### Personalized Job Matching
-- **Best Match Algorithm** weighing skills, experience, and preferences
-- **Newest First** sorting for time-sensitive opportunities
-- Filter by: Skills, Experience Level, Location, Remote, Startup Stage
+### How It Works (Engineers)
 
-### Startup Discovery
-- Browse curated startup listings with:
-  - Funding stage (Seed → Series A → Unicorn)
-  - Team size and growth metrics
-  - Open positions count
-  - Company culture highlights
-- **Map View** with Mapbox integration (optional)
+```
+┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
+│  Create  │────►│  Build   │────►│  Get AI  │────►│  Apply & │
+│ Account  │     │ Profile  │     │  Matches │     │ Connect  │
+└──────────┘     └──────────┘     └──────────┘     └──────────┘
+```
 
-### Application Tracker
-- **Kanban Board** with drag-and-drop (Phase 2)
-- Status tracking: Applied → Interview → Offer/Rejected
-- Deadline reminders and notifications
+---
 
-### Career Insights Dashboard
-- Application activity trends
-- Conversion funnel analytics
-- KPI summary (applications, interviews, offers)
-- Exportable application history
+## For Founders
+
+### 🏢 Build Your Dream Team
+
+| Feature | Description |
+|---------|-------------|
+| **Startup Profile** | Showcase your vision, culture, tech stack, and funding stage |
+| **Role Management** | Post unlimited roles with detailed requirements |
+| **AI Candidate Matching** | Get ranked candidates scored against your requirements |
+| **Direct Outreach** | Message top candidates before they apply |
+| **Pipeline Management** | Track candidates through your hiring funnel |
+
+### How It Works (Founders)
+
+```
+┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
+│  Create  │────►│  Setup   │────►│  Post    │────►│ Review & │
+│ Startup  │     │ Profile  │     │  Roles   │     │  Hire    │
+└──────────┘     └──────────┘     └──────────┘     └──────────┘
+```
+
+---
+
+## Key Features
+
+### 🔐 Authentication & Roles
+- **JWT Authentication** with 7-day token expiration
+- **Role-Based Access**: Founder vs Engineer experiences
+- **Smart Onboarding**: Role-specific profile building
+
+### 🤖 AI-Powered Matching
+- **Skill Matching**: 40% weight on technical skill overlap
+- **Experience Matching**: 30% weight on level alignment
+- **Location/Remote**: 15% weight on work preferences
+- **Culture Fit**: 15% weight on startup stage and values
+- **LLM Integration**: OpenAI & Anthropic for advanced matching
+
+### 💬 Direct Communication
+- **Connection Requests**: Founders can reach out to candidates
+- **Real-time Messaging**: Built-in chat between matched pairs
+- **Application Pipeline**: Status tracking for both sides
+
+### 📊 Transparent Startup Data
+- Funding Stage (Pre-seed → Unicorn)
+- Team Size & Growth Rate
+- Tech Stack & Culture
+- Equity & Salary Ranges
 
 ---
 
@@ -117,10 +157,7 @@ The traditional job market fails both **startups** and **job seekers** in critic
 | **Zustand** | Lightweight state management |
 | **TailwindCSS 3.4** | Utility-first styling |
 | **shadcn/ui + Radix** | Accessible component library |
-| **React Hook Form + Zod** | Form validation |
-| **Recharts** | Analytics visualization |
-| **Axios** | HTTP client |
-| **Lucide React** | Icon library |
+| **Axios** | HTTP client with interceptors |
 
 ### Backend
 
@@ -131,9 +168,7 @@ The traditional job market fails both **startups** and **job seekers** in critic
 | **Motor** | Async MongoDB driver |
 | **Pydantic v2** | Data validation & serialization |
 | **PyJWT** | JSON Web Token authentication |
-| **bcrypt** | Secure password hashing |
-| **pdfplumber** | PDF resume parsing |
-| **python-docx** | DOCX resume parsing |
+| **OpenAI / Anthropic** | LLM integrations for AI matching |
 
 ### Database & Infrastructure
 
@@ -147,68 +182,56 @@ The traditional job market fails both **startups** and **job seekers** in critic
 
 ## Architecture
 
+### Project Structure
+
+```
+startupsfor.you/
+├── frontend/
+│   └── src/
+│       ├── api/              # API layer (client, endpoints)
+│       ├── models/           # Constants, enums, types
+│       ├── controllers/      # Business logic hooks
+│       ├── pages/            # View components
+│       ├── components/ui/    # shadcn/ui components
+│       └── store/            # Zustand state
+│
+├── backend/
+│   ├── schemas/              # Pydantic models
+│   ├── controllers/          # Business logic
+│   ├── services/             # Matching, Resume, Notifications
+│   ├── llm/                  # OpenAI, Anthropic providers
+│   └── routers/              # API routes
+│
+├── docker-compose.yml
+└── TECH_SPEC.md
+```
+
 ### System Overview
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                              CLIENT LAYER                                    │
-│                         (Web Browser / Mobile)                               │
-└────────────────────────────────────┬────────────────────────────────────────┘
-                                     │ HTTPS
-                                     ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                            DOCKER HOST                                       │
 │  ┌─────────────────────────────────────────────────────────────────────┐    │
 │  │                                                                      │    │
 │  │   ┌─────────────────┐          ┌─────────────────────────────────┐  │    │
-│  │   │                 │   REST   │                                 │  │    │
-│  │   │    FRONTEND     │   API    │           BACKEND               │  │    │
-│  │   │    ─────────    │ ◄──────► │           ───────               │  │    │
+│  │   │    FRONTEND     │   REST   │           BACKEND               │  │    │
+│  │   │    (React 19)   │ ◄──────► │          (FastAPI)              │  │    │
+│  │   │    Port: 3000   │   API    │          Port: 8000             │  │    │
 │  │   │                 │          │                                 │  │    │
-│  │   │  React 19       │          │  FastAPI                        │  │    │
-│  │   │  TailwindCSS    │          │  ├── /api/auth     (JWT Auth)   │  │    │
-│  │   │  Zustand        │          │  ├── /api/profile  (User Data)  │  │    │
-│  │   │  shadcn/ui      │          │  ├── /api/jobs     (Listings)   │  │    │
-│  │   │                 │          │  ├── /api/applications          │  │    │
-│  │   │  Port: 3000     │          │  └── /api/insights (Analytics)  │  │    │
-│  │   │                 │          │                                 │  │    │
-│  │   └─────────────────┘          │  Port: 8000                     │  │    │
-│  │                                └────────────────┬────────────────┘  │    │
+│  │   │  ┌───────────┐  │          │  ┌─────────────────────────┐   │  │    │
+│  │   │  │   API     │  │          │  │ Controllers + Services  │   │  │    │
+│  │   │  │ Controllers│  │          │  │ LLM Integration        │   │  │    │
+│  │   │  │  Models   │  │          │  │ Matching Engine        │   │  │    │
+│  │   │  └───────────┘  │          │  └─────────────────────────┘   │  │    │
+│  │   └─────────────────┘          └────────────────┬────────────────┘  │    │
 │  │                                                 │                    │    │
-│  │                                                 │ Motor (Async)      │    │
 │  │                                                 ▼                    │    │
-│  │                                ┌─────────────────────────────────┐  │    │
-│  │                                │           MONGODB               │  │    │
-│  │                                │           ───────               │  │    │
-│  │                                │                                 │  │    │
-│  │                                │  Collections:                   │  │    │
-│  │                                │  ├── users                      │  │    │
-│  │                                │  ├── profiles                   │  │    │
-│  │                                │  ├── jobs                       │  │    │
-│  │                                │  ├── applications               │  │    │
-│  │                                │  └── user_sessions              │  │    │
-│  │                                │                                 │  │    │
-│  │                                │  Port: 27017                    │  │    │
-│  │                                └─────────────────────────────────┘  │    │
-│  │                                                                      │    │
+│  │                         ┌─────────────┐   ┌─────────────┐           │    │
+│  │                         │   MongoDB   │   │ OpenAI/LLM  │           │    │
+│  │                         │  Port:27017 │   │  Providers  │           │    │
+│  │                         └─────────────┘   └─────────────┘           │    │
 │  └─────────────────────────────────────────────────────────────────────┘    │
 └─────────────────────────────────────────────────────────────────────────────┘
-```
-
-### Data Flow
-
-```
-┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────┐
-│  User    │────►│ React    │────►│ FastAPI  │────►│ MongoDB  │
-│  Action  │     │ Frontend │     │ Backend  │     │ Database │
-└──────────┘     └────┬─────┘     └────┬─────┘     └──────────┘
-                      │                │
-                 Zustand           Pydantic
-                 Store             Validation
-                      │                │
-                      ▼                ▼
-                 Local State      Type Safety
-                 Persistence      & Serialization
 ```
 
 ---
@@ -248,8 +271,9 @@ pip install -r requirements.txt
 
 # Set environment variables
 export MONGO_URL=mongodb://localhost:27017
-export DB_NAME=startupsforyu
+export DB_NAME=startupsforyou
 export JWT_SECRET=your-secret-key
+export OPENAI_API_KEY=your-openai-key  # Optional
 
 uvicorn server:app --reload --port 8000
 ```
@@ -257,12 +281,12 @@ uvicorn server:app --reload --port 8000
 **Frontend:**
 ```bash
 cd frontend
-npm install  # or yarn install
+npm install
 
 # Set environment variables
 export REACT_APP_BACKEND_URL=http://localhost:8000
 
-npm start  # or yarn start
+npm start
 ```
 
 ### Environment Variables
@@ -272,44 +296,48 @@ npm start  # or yarn start
 | `MONGO_URL` | Backend | MongoDB connection string |
 | `DB_NAME` | Backend | Database name |
 | `JWT_SECRET` | Backend | Secret for JWT signing |
-| `CORS_ORIGINS` | Backend | Allowed CORS origins |
+| `OPENAI_API_KEY` | Backend | OpenAI API key (optional) |
+| `ANTHROPIC_API_KEY` | Backend | Anthropic API key (optional) |
 | `REACT_APP_BACKEND_URL` | Frontend | Backend API URL |
 
 ---
 
-## Roadmap
+## API Endpoints
 
-### Phase 1: MVP ✅ (Current)
-- [x] User authentication (JWT)
-- [x] Landing page & marketing
-- [x] User registration flow
-- [x] Basic resume upload
-- [x] Docker containerization
+### Authentication
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/signup` | Register (Engineer or Founder) |
+| POST | `/api/auth/login` | Login |
+| GET | `/api/auth/me` | Get current user |
 
-### Phase 2: Core Features (In Progress)
-- [ ] **AI Resume Parsing** - GPT/Gemini integration for intelligent extraction
-- [ ] **Job Search & Filters** - Full-text search with Elasticsearch
-- [ ] **Personalized Matching** - ML-based job recommendations
-- [ ] **Application Tracker** - Kanban board with drag-and-drop
-- [ ] **Startup Profiles** - Detailed company pages with metrics
+### Startups (Founders Only)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/startups` | Create startup |
+| GET | `/api/startups/me` | Get my startup |
+| GET | `/api/startups` | List startups |
 
-### Phase 3: AI & Intelligence
-- [ ] **Semantic Skill Matching** - Embeddings-based similarity
-- [ ] **AI Cover Letter Generator** - Personalized for each application
-- [ ] **Interview Prep Assistant** - Company-specific insights
-- [ ] **Salary Insights** - Market data and negotiation tips
+### Roles
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/roles` | Create role (Founders) |
+| GET | `/api/roles` | List roles |
+| GET | `/api/roles/recommended` | AI recommendations (Engineers) |
 
-### Phase 4: Network & Engagement
-- [ ] **LinkedIn Integration** - Employee discovery & connections
-- [ ] **Direct Messaging** - Chat with founders
-- [ ] **Referral System** - Get introduced by network
-- [ ] **Email Notifications** - Deadline reminders & updates
+### Engineers
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/engineers/me` | Get my profile |
+| PATCH | `/api/engineers/me` | Update profile |
+| GET | `/api/engineers` | Search engineers (Founders) |
 
-### Phase 5: Scale & Enterprise
-- [ ] **Redis Caching** - Performance optimization
-- [ ] **Elasticsearch** - Advanced search capabilities
-- [ ] **Analytics Dashboard** - For startups to track applicants
-- [ ] **Startup Subscription** - Premium listing features
+### Applications & Connections
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/applications` | Apply to role |
+| POST | `/api/connections` | Connect with engineer |
+| POST | `/api/connections/:id/messages` | Send message |
 
 ---
 
@@ -339,5 +367,5 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 </p>
 
 <p align="center">
-  <sub>If you found this project helpful, please consider giving it a ⭐</sub>
+  <sub>Connecting founders with the talent they need to build the future ⭐</sub>
 </p>
