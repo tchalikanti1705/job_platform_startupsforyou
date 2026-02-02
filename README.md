@@ -27,27 +27,6 @@
   <a href="#getting-started">Getting Started</a>
 </p>
 
----
-
-## The Problem
-
-### The Two-Sided Hiring Gap
-
-| For Engineers | For Founders |
-|---------------|--------------|
-| ❌ Hard to discover quality startup opportunities | ❌ Struggle to find candidates interested in startup culture |
-| ❌ Generic job boards don't understand startup skills | ❌ Waste time with candidates who don't fit startup mindset |
-| ❌ No direct connection to founders | ❌ Miss great candidates from non-traditional backgrounds |
-| ❌ Lack of startup context (funding, stage, equity) | ❌ Can't showcase what makes their startup unique |
-
-**Result:** Talented engineers miss life-changing opportunities while founders struggle to build their founding teams.
-
----
-
-## The Solution
-
-**StartupsForYou** is a **two-sided talent marketplace** that directly connects startup founders with engineering talent using **AI-powered matching**.
-
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                                                                              │
