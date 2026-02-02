@@ -2,7 +2,6 @@
 // API endpoints for health checks and monitoring
 
 const os = require('os');
-
 const SERVER_START_TIME = Date.now();
 
 /**
